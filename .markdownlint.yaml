@@ -1,0 +1,8 @@
+# Disable line length check (business briefs require long sentences)
+MD013: false
+
+# Allow inline HTML (needed for some formatting and tables)
+MD033: false
+
+# Disable strict table column alignment
+MD060: false
