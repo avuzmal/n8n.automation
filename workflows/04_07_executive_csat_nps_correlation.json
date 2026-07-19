@@ -1,0 +1,104 @@
+{
+  "name": "04.07 Executive CSAT/NPS Correlation",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-04-07"
+      },
+      "id": "e97a28ea-5e0d-4cc3-a8e4-c8649ab61d89",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Executive CSAT/NPS Correlation\n\n**The Problem:**\nNPS scores exist in a silo. Executives need to know if the unhappy customers are your largest enterprise accounts or your lowest-tier users.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "21edefa1-5742-4381-95e3-69d98869870a",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "642d57c1-69f1-4024-a1c2-86b673ccfe5c",
+      "name": "Delighted",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3c0f70bd-1485-4d12-8554-71b656d9d827",
+      "name": "Salesforce",
+      "type": "n8n-nodes-base.salesforce",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "766131ec-d24f-4c61-8874-181f41ad82e6",
+      "name": "Notion",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Delighted",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delighted": {
+      "main": [
+        [
+          {
+            "node": "Salesforce",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Salesforce": {
+      "main": [
+        [
+          {
+            "node": "Notion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "e333f60d-d38c-49e7-a720-08720e682d19"
+}

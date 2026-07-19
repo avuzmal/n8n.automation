@@ -1,0 +1,104 @@
+{
+  "name": "08.06 Proactive Contract Renewal Management",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-08-06"
+      },
+      "id": "408674cb-5dd4-4b2c-98ed-a578425741b9",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Proactive Contract Renewal Management\n\n**The Problem:**\nContracts auto-renew without renegotiation, or worse, expire without notice, leaving the business legally exposed or paying for unused software.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "7158e084-b060-4b3b-80c6-cd429dbfad2d",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f212db02-5227-4d85-8d32-270d4aff77ce",
+      "name": "Ironclad",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "4bab94c9-ce44-406b-97f6-58e7cd2ae8a3",
+      "name": "Quote Generator",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "b6ab4423-60e3-459d-a429-caa8fcf89b37",
+      "name": "Email/Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Ironclad",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ironclad": {
+      "main": [
+        [
+          {
+            "node": "Quote Generator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Quote Generator": {
+      "main": [
+        [
+          {
+            "node": "Email/Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "8f61dfd7-0d67-4a6e-a506-d302da785dcb"
+}

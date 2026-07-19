@@ -1,0 +1,126 @@
+{
+  "name": "01.09 Automated Month-End Close & Board Reporting",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-01-09"
+      },
+      "id": "daa5eadf-980f-4963-8091-26763854556c",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Automated Month-End Close & Board Reporting\n\n**The Problem:**\nThe month-end close process requires aggregating data, running complex variance calculations, and formatting board decks, taking days of manual accounting work.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "4ea5fe3a-427b-40d6-a1a6-9a82c400126a",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "6fa8f9d1-3148-4886-b813-503f98f46cc4",
+      "name": "Xero",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "876fe3d0-3d35-42c6-b581-7711cf47ee17",
+      "name": "Python",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "73219a07-fb82-45f8-9281-755362efccaf",
+      "name": "Excel generation",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "0b409cc6-3fd8-43fd-9cd7-92ba336b3b01",
+      "name": "Secure Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Xero",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Xero": {
+      "main": [
+        [
+          {
+            "node": "Python",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Python": {
+      "main": [
+        [
+          {
+            "node": "Excel generation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Excel generation": {
+      "main": [
+        [
+          {
+            "node": "Secure Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "4cb4048a-9709-4296-9ba0-a48f5d86dab5"
+}

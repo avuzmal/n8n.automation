@@ -1,0 +1,126 @@
+{
+  "name": "08.07 Continuous SOC2 Evidence Collection",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-08-07"
+      },
+      "id": "1a6930b6-d370-4019-b6c5-f5234f37dde0",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Continuous SOC2 Evidence Collection\n\n**The Problem:**\nPreparing for a SOC2 audit involves scrambling for weeks to manually pull access logs and system screenshots for auditors.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "980b10ee-7b64-4a4f-a9ed-5ddc173f9186",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "8ce32b74-615c-40b3-bce0-9366f66ce6fc",
+      "name": "Okta",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "1f7a0123-3b04-4934-84ae-d0b24d21b7d1",
+      "name": "GitHub",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "5534df21-46d4-49a9-b87c-ced49482cd5f",
+      "name": "AWS",
+      "type": "n8n-nodes-base.aws",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "8be4fc3e-90d8-45f7-aae0-74861745d75a",
+      "name": "Vanta (or similar)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Okta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Okta": {
+      "main": [
+        [
+          {
+            "node": "GitHub",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub": {
+      "main": [
+        [
+          {
+            "node": "AWS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AWS": {
+      "main": [
+        [
+          {
+            "node": "Vanta (or similar)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "7d5f2d95-d996-4c99-8ffe-c13ddf9b3759"
+}

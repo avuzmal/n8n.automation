@@ -1,0 +1,126 @@
+{
+  "name": "01.04 Dynamic Subscription Dunning & Retention",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-01-04"
+      },
+      "id": "6cb31cde-1af7-4071-863f-de050493db74",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Dynamic Subscription Dunning & Retention\n\n**The Problem:**\nFailed payments lead to involuntary churn. Handling collections manually is inefficient and results in poor customer experiences when services are cut without proper warning.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "d828d3e3-fa7a-4328-a240-667ec787198e",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "af67a3b7-112f-425b-9ca4-08cd5bad0387",
+      "name": "Stripe",
+      "type": "n8n-nodes-base.stripe",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3f7363dd-ee70-4ec6-8e8d-eef20244e297",
+      "name": "Intercom",
+      "type": "n8n-nodes-base.intercom",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "492df65f-8b2f-414d-b0e6-0961f53b7570",
+      "name": "Salesforce",
+      "type": "n8n-nodes-base.salesforce",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "73bcacdd-1197-4633-96b8-28bb6b767f69",
+      "name": "SMS/Email API",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Stripe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stripe": {
+      "main": [
+        [
+          {
+            "node": "Intercom",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Intercom": {
+      "main": [
+        [
+          {
+            "node": "Salesforce",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Salesforce": {
+      "main": [
+        [
+          {
+            "node": "SMS/Email API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "f83de7f2-bb06-4e3e-85f0-46a6b19c94dd"
+}

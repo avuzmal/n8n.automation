@@ -1,0 +1,104 @@
+{
+  "name": "05.03 Zero-Touch CPQ & Provisioning",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-05-03"
+      },
+      "id": "a2f688a8-f174-42a3-9ea7-fc262b216604",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Zero-Touch CPQ & Provisioning\n\n**The Problem:**\nGenerating quotes manually introduces pricing errors, rogue discounting, and delays in getting the contract to the prospect while they are hot.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "24328226-270b-4420-be5f-ecefb5831a09",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "7edf645b-09e1-47fc-a9ae-91f6eb39c437",
+      "name": "Salesforce",
+      "type": "n8n-nodes-base.salesforce",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "dcb36712-539c-4228-bdf1-94830705184e",
+      "name": "PandaDoc",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "cfcf6d6d-5b47-4517-9d55-302baf38b315",
+      "name": "Provisioning API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Salesforce",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Salesforce": {
+      "main": [
+        [
+          {
+            "node": "PandaDoc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PandaDoc": {
+      "main": [
+        [
+          {
+            "node": "Provisioning API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "9fdfec04-7076-47ad-9541-dc89e484b221"
+}

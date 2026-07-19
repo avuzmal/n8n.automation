@@ -1,0 +1,82 @@
+{
+  "name": "09.09 Intelligent API Rate Limit Handler",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-09-09"
+      },
+      "id": "acbf06f3-488f-437c-ae74-bad442ad7b68",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Intelligent API Rate Limit Handler\n\n**The Problem:**\nSimple ETL scripts often crash because they hit rate limits on external APIs (like Shopify or Zendesk), requiring manual engineering intervention to restart.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "8a3ba787-4b0b-449f-8141-1e733a24f12e",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "675d0fdc-fe4c-4a9c-99a5-bd05404b4eb6",
+      "name": "External APIs",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "36e9beba-db50-461d-b512-bf28339ccbcb",
+      "name": "Wait Nodes (n8n)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "External APIs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "External APIs": {
+      "main": [
+        [
+          {
+            "node": "Wait Nodes (n8n)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "ab37741e-3322-4a06-9f67-acc7973f1847"
+}

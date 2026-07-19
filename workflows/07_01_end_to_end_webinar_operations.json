@@ -1,0 +1,104 @@
+{
+  "name": "07.01 End-to-End Webinar Operations",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-07-01"
+      },
+      "id": "89a42d1a-7e48-4e3b-bdd8-0217e1a25a4e",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## End-to-End Webinar Operations\n\n**The Problem:**\nHosting a webinar requires manually syncing registrants between Zoom, Marketo, and Salesforce, often resulting in missed follow-ups and lost leads.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "562b1c5f-7614-4f24-8fb5-ff477c614939",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "7b009d33-25f2-4dcf-b81c-73c83a2091f7",
+      "name": "Zoom",
+      "type": "n8n-nodes-base.zoom",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "5ffb769c-c150-47eb-892d-985a5928557a",
+      "name": "Marketo",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f19edced-452c-4c8b-a961-3dd95c043bc7",
+      "name": "Salesforce",
+      "type": "n8n-nodes-base.salesforce",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Zoom",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zoom": {
+      "main": [
+        [
+          {
+            "node": "Marketo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Marketo": {
+      "main": [
+        [
+          {
+            "node": "Salesforce",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "75755bb1-4f58-4593-b428-7178529fbf31"
+}

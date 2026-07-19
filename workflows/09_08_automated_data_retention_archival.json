@@ -1,0 +1,82 @@
+{
+  "name": "09.08 Automated Data Retention & Archival",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-09-08"
+      },
+      "id": "78fa5b5f-653d-4b8c-9938-f8cb524c4e73",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Automated Data Retention & Archival\n\n**The Problem:**\nKeeping years of raw log data in a high-performance Snowflake warehouse costs a fortune. DBA teams rarely have time to clean up old tables manually.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "ca4a1f44-3cc0-485a-9bb7-fd7c8204123b",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c09578b7-385e-4594-aa0e-02aadcd37440",
+      "name": "Snowflake",
+      "type": "n8n-nodes-base.snowflake",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "cac00dea-e37a-412d-ac99-751dc60ceb56",
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Snowflake",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Snowflake": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "86847f6f-26c8-48ae-aa56-b99f9e7a5f1e"
+}

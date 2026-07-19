@@ -1,0 +1,104 @@
+{
+  "name": "02.08 Mandatory Compliance Training Enforcement",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-02-08"
+      },
+      "id": "c9dc35de-3b1b-4d2b-9291-47532941e574",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Mandatory Compliance Training Enforcement\n\n**The Problem:**\nEnsuring 100% compliance on mandatory training (like security or harassment) is difficult, and manual chasing by HR is ineffective.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "7d4cbb35-04d1-4c95-8804-3993f21bd045",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "b8a1e6e7-40d3-4296-a911-7bfed26f95e8",
+      "name": "Docebo",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a66f7144-da1d-470b-bca6-5cc504df3b77",
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3a880765-d01e-4d54-abab-0fac3645c655",
+      "name": "HRIS (e.g., BambooHR)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Docebo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Docebo": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slack": {
+      "main": [
+        [
+          {
+            "node": "HRIS (e.g., BambooHR)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "f507e7d2-7b53-4a0b-b72a-dacf9bd34c80"
+}

@@ -1,0 +1,126 @@
+{
+  "name": "02.02 Secure Offboarding & Data Leakage Prevention",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-02-02"
+      },
+      "id": "129ad715-69e8-4923-8aba-98cbdc510e4f",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Secure Offboarding & Data Leakage Prevention\n\n**The Problem:**\nMissed offboarding steps result in ex-employees retaining access to sensitive corporate data, creating severe security and compliance risks.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "78d4454c-faab-46b6-b4be-b50ad3cec015",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "90e291f0-3fb3-4794-b125-de70220c560a",
+      "name": "Okta",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "7a49f93f-ba8e-44b8-a196-25c981be0e15",
+      "name": "Jira",
+      "type": "n8n-nodes-base.jira",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "81cff707-1d9a-4b06-8e98-4c28283a04f4",
+      "name": "Gusto",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "8bd83090-e1a7-4825-93e0-a16249d489a1",
+      "name": "Typeform",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Okta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Okta": {
+      "main": [
+        [
+          {
+            "node": "Jira",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Jira": {
+      "main": [
+        [
+          {
+            "node": "Gusto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gusto": {
+      "main": [
+        [
+          {
+            "node": "Typeform",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "79bf3267-2d21-430c-81a9-02dd5eb6631c"
+}

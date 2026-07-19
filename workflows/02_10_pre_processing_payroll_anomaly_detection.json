@@ -1,0 +1,82 @@
+{
+  "name": "02.10 Pre-Processing Payroll Anomaly Detection",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-02-10"
+      },
+      "id": "db5ab956-8dc1-4af7-a873-0ac68dea499e",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Pre-Processing Payroll Anomaly Detection\n\n**The Problem:**\nPayroll mistakes (incorrect raises, wrong bank details) are catastrophic for employee trust and very difficult to reverse once processed.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "760a0af9-3904-4de9-943e-20baf9e37138",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "bf418d68-d227-4997-95c6-55578de35c43",
+      "name": "ADP",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "75c2a3e7-2cec-4353-9835-8a6c19f84f1b",
+      "name": "Approval System (Jira/Email)",
+      "type": "n8n-nodes-base.jira",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "ADP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ADP": {
+      "main": [
+        [
+          {
+            "node": "Approval System (Jira/Email)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "44fb6506-64ae-4d09-8816-7eb85d6ce3f2"
+}

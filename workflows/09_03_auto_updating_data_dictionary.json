@@ -1,0 +1,104 @@
+{
+  "name": "09.03 Auto-Updating Data Dictionary",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-09-03"
+      },
+      "id": "89b7a9c8-5038-45d6-972f-afe6b3b53709",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Auto-Updating Data Dictionary\n\n**The Problem:**\nData catalogs (like Atlan or Alation) go out of date instantly because engineers forget to document new schema columns.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "baaf85c9-ab47-4d95-814c-429a1dda6654",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "e86c45fc-0adc-4a9b-8229-8fa92accde8e",
+      "name": "Snowflake",
+      "type": "n8n-nodes-base.snowflake",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "e42ff854-45fb-4c27-bca4-55d8141f0ef5",
+      "name": "AI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "6d0b6e9f-4ef4-47ff-9853-ece507e284c7",
+      "name": "Data Catalog (Atlan)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Snowflake",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Snowflake": {
+      "main": [
+        [
+          {
+            "node": "AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI": {
+      "main": [
+        [
+          {
+            "node": "Data Catalog (Atlan)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "09172a7d-d46f-4d42-9672-6f1c4543b056"
+}

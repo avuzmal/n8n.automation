@@ -1,0 +1,104 @@
+{
+  "name": "07.10 Voice of Customer Feedback Loop",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-07-10"
+      },
+      "id": "b95556bd-cc15-4722-8f16-cab3a29752d9",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Voice of Customer Feedback Loop\n\n**The Problem:**\nMarketing captures great user feedback in Intercom, but it never makes its way to the Product team's roadmap.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "56f1c2fa-613d-4f7e-96ad-eaff4c60dd6b",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "6136d3df-9a96-4db5-b41e-981ee974a274",
+      "name": "Intercom",
+      "type": "n8n-nodes-base.intercom",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "d3a72faf-e2b7-47e7-8dc1-67f0e535b46a",
+      "name": "Productboard",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f76de49d-fb3c-4e19-b3d1-e14b6b96a47f",
+      "name": "AI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Intercom",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Intercom": {
+      "main": [
+        [
+          {
+            "node": "Productboard",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Productboard": {
+      "main": [
+        [
+          {
+            "node": "AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "2849ff05-af38-4850-99ec-aaddd232ef8c"
+}

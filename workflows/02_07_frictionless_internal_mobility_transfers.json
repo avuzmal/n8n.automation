@@ -1,0 +1,82 @@
+{
+  "name": "02.07 Frictionless Internal Mobility & Transfers",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-02-07"
+      },
+      "id": "1f1e02f3-98d3-4656-9e3d-510a9f2bbe9c",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Frictionless Internal Mobility & Transfers\n\n**The Problem:**\nInternal job applications often bypass current managers or ignore historical performance data, causing internal friction and misaligned expectations.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "e5df79ab-1042-442b-b141-43f5c6171c71",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "23a3a9cb-68a3-4026-972f-163627b2230a",
+      "name": "Workday",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "5cd8b350-3d74-4ed3-bc8d-a99ccaa270e8",
+      "name": "Email/Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Workday",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Workday": {
+      "main": [
+        [
+          {
+            "node": "Email/Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "b97924c8-af62-4d13-bfa1-1a154eb403bf"
+}

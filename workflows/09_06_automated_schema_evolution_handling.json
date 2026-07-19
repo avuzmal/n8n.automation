@@ -1,0 +1,104 @@
+{
+  "name": "09.06 Automated Schema Evolution Handling",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-09-06"
+      },
+      "id": "8bb15180-48e5-4ac2-8ddb-75386fb894e4",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Automated Schema Evolution Handling\n\n**The Problem:**\nWhen an upstream engineering team adds a field to a JSON payload, it breaks downstream Kafka consumers if the schema registry isn't updated.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "4e697ca1-13a7-4a8d-b558-d86f18694d35",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "886dd3cd-0f00-4aef-84d2-dc007046c5b8",
+      "name": "Kafka",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "98b0d019-f246-4465-846e-6a7b480a8258",
+      "name": "Schema Registry",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "eb967957-9999-43fa-8868-102a1b236873",
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Kafka",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kafka": {
+      "main": [
+        [
+          {
+            "node": "Schema Registry",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schema Registry": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "63a44804-3240-4df5-82cc-05a86c78166a"
+}

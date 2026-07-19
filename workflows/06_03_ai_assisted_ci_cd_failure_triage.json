@@ -1,0 +1,126 @@
+{
+  "name": "06.03 AI-Assisted CI/CD Failure Triage",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-06-03"
+      },
+      "id": "5054f35b-21b1-4487-8fd6-1be035b90461",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## AI-Assisted CI/CD Failure Triage\n\n**The Problem:**\nWhen a build fails in CI/CD, developers spend hours digging through massive error logs just to find a simple missing dependency or syntax error.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "76088cd1-6a1f-4b12-be5a-4a836a9a2d48",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "1c4fe51f-f585-446f-ba7d-ed6f8d4950e5",
+      "name": "GitHub Actions",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f618deec-5f29-496f-80b2-2b021d33d34d",
+      "name": "AI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "357ebba3-ed9c-4aa3-8603-4474c7ec2b74",
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "02fc7dd7-6c08-4f8e-8386-d5a5381e4483",
+      "name": "Jira",
+      "type": "n8n-nodes-base.jira",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "GitHub Actions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub Actions": {
+      "main": [
+        [
+          {
+            "node": "AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slack": {
+      "main": [
+        [
+          {
+            "node": "Jira",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "321fd25e-2e2c-42d4-9a43-d623d064800e"
+}

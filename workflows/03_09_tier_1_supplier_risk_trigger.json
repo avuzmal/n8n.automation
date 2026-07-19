@@ -1,0 +1,82 @@
+{
+  "name": "03.09 Tier-1 Supplier Risk Trigger",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-03-09"
+      },
+      "id": "b107abd4-5e73-4628-ac18-539895a99f28",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Tier-1 Supplier Risk Trigger\n\n**The Problem:**\nIf a critical supplier faces a natural disaster or financial trouble, the business needs to secure alternative stock immediately before competitors do.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "a8d99258-7209-422b-944f-9457e0f29d5f",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "5f7049af-4461-4414-a724-baa21f5c3f72",
+      "name": "Resilinc API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "500905ef-e3b8-4bad-8e81-f7409ebfbe09",
+      "name": "ERP",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Resilinc API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Resilinc API": {
+      "main": [
+        [
+          {
+            "node": "ERP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "85434704-83d8-4380-86bf-59393d138074"
+}

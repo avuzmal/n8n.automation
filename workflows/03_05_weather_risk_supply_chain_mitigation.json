@@ -1,0 +1,104 @@
+{
+  "name": "03.05 Weather Risk Supply Chain Mitigation",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-03-05"
+      },
+      "id": "082c14b1-d14e-45c4-9e60-999108f9addd",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Weather Risk Supply Chain Mitigation\n\n**The Problem:**\nSevere weather events (hurricanes, snowstorms) disrupt shipping routes, but logistics teams often react only after the disruption has occurred.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "f448ef78-d8a1-4202-8d95-e6b304a9fd63",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c9216211-e868-4bd1-974c-e198dadac3c8",
+      "name": "Weather API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a0d554b2-983e-455b-b2d7-8d88eaf37a77",
+      "name": "Logistics Software",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "8af89735-331c-4de3-9f67-4f63f11315b7",
+      "name": "MS Teams",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Weather API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Weather API": {
+      "main": [
+        [
+          {
+            "node": "Logistics Software",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Logistics Software": {
+      "main": [
+        [
+          {
+            "node": "MS Teams",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "3b647fda-3bce-4bf3-9224-f7ea3dd69bbe"
+}

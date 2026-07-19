@@ -1,0 +1,82 @@
+{
+  "name": "03.07 Daily 3PL to ERP Inventory Reconciliation",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-03-07"
+      },
+      "id": "f72e7c46-8198-4bec-8f00-7234adb140eb",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Daily 3PL to ERP Inventory Reconciliation\n\n**The Problem:**\nDiscrepancies between the 3PL warehouse and the central ERP cause accounting nightmare and overselling issues.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "650d467a-0ec3-4c20-8237-0f1c6a5850e7",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "8f8d6076-a8dc-4e28-9774-45ac1141e1db",
+      "name": "ShipHero",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "fd6cace0-3456-4f47-ba55-1e0a8e1f61e3",
+      "name": "Microsoft Dynamics",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "ShipHero",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ShipHero": {
+      "main": [
+        [
+          {
+            "node": "Microsoft Dynamics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "380c2f8d-bff7-4e3d-965c-a004d881ada1"
+}

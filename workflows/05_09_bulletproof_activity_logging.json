@@ -1,0 +1,82 @@
+{
+  "name": "05.09 Bulletproof Activity Logging",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-05-09"
+      },
+      "id": "ea7a8261-3c12-41cd-bf9e-f9328da671f2",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Bulletproof Activity Logging\n\n**The Problem:**\nSales reps forget to log meetings in the CRM, making it impossible to measure activity metrics or understand what it takes to close a deal.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "b1c1e25c-c41c-47e3-a7f8-da17c2705ddd",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "61f5eb4d-ac1d-4fa8-8bdc-878b12c4e42a",
+      "name": "Outlook",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "2cada6b6-bfdf-4772-820a-52a40eb45673",
+      "name": "Salesforce",
+      "type": "n8n-nodes-base.salesforce",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Outlook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Outlook": {
+      "main": [
+        [
+          {
+            "node": "Salesforce",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "e9c5cc6c-b84d-450a-bd51-242667bc9762"
+}

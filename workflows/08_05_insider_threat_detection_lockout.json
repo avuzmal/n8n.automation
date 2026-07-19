@@ -1,0 +1,104 @@
+{
+  "name": "08.05 Insider Threat Detection & Lockout",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-08-05"
+      },
+      "id": "50a1ce31-c8df-485e-9b91-12c59c6d46fe",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Insider Threat Detection & Lockout\n\n**The Problem:**\nDisgruntled employees downloading gigabytes of proprietary data before leaving the company often goes unnoticed until the damage is done.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "1b257a20-1892-4b89-9f6a-b7e2de2523a5",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "0863e686-cf4c-429a-8ddb-c61bcdd41597",
+      "name": "Okta",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "cc858ecb-bdb7-4cda-8208-1178f36c6fad",
+      "name": "DLP System",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "50656aeb-c79e-4fbe-a66d-21eec8e988e9",
+      "name": "PagerDuty",
+      "type": "n8n-nodes-base.pagerDuty",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Okta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Okta": {
+      "main": [
+        [
+          {
+            "node": "DLP System",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DLP System": {
+      "main": [
+        [
+          {
+            "node": "PagerDuty",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "9a56c047-8306-426b-84a2-127d600a7ae4"
+}

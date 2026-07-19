@@ -1,0 +1,104 @@
+{
+  "name": "03.04 Zero-Touch Customs Documentation",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-03-04"
+      },
+      "id": "72a833f8-a5db-4233-ab91-773685d6d487",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Zero-Touch Customs Documentation\n\n**The Problem:**\nGenerating commercial invoices, packing lists, and AES filings by hand delays international shipments and increases the risk of customs holds due to typos.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "5f052c87-3fe6-40f5-b89d-6ffbdfe1ede5",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "6ece2de9-da0e-4fbe-86ac-8fd06e0321ff",
+      "name": "SAP",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "99635faa-7f44-454e-95bd-381fcacae54a",
+      "name": "Document Generation API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "7ee9e9e3-4473-4d9b-aed9-c524e5c3744a",
+      "name": "Customs API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "SAP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SAP": {
+      "main": [
+        [
+          {
+            "node": "Document Generation API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Document Generation API": {
+      "main": [
+        [
+          {
+            "node": "Customs API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "bdf3f03e-7ab3-4a61-a950-e27d3a9f8855"
+}

@@ -1,0 +1,104 @@
+{
+  "name": "03.10 AI-Driven Demand Planning",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-03-10"
+      },
+      "id": "a913b087-9847-43db-b105-23610c1be595",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## AI-Driven Demand Planning\n\n**The Problem:**\nSimple rolling averages fail to predict complex demand shifts, resulting in poor production scheduling and wasted manufacturing capacity.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "67ec99f4-dee7-44fa-80e7-76204cdfa042",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a2c005e3-d411-44d7-ac7e-ccbd0f79af8b",
+      "name": "POS System",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "cde4158a-162e-4e54-a434-75d59ce269c5",
+      "name": "Python Scripting",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "86e0dd48-309d-46fd-b674-58ca489ecebb",
+      "name": "MES",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "POS System",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "POS System": {
+      "main": [
+        [
+          {
+            "node": "Python Scripting",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Python Scripting": {
+      "main": [
+        [
+          {
+            "node": "MES",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "b0142069-1a1f-4d8b-a7d3-4d3e2cf078cf"
+}

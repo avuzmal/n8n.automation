@@ -1,0 +1,104 @@
+{
+  "name": "02.06 Automated Visa & Relocation Compliance",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-02-06"
+      },
+      "id": "55169e3e-e00c-433a-88f9-5b45b8b6451d",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Automated Visa & Relocation Compliance\n\n**The Problem:**\nMissing a visa or passport expiration date can result in illegal working statuses or halted relocations, exposing the company to massive legal fines.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "7a0c34a8-ede7-4d4f-9779-5eb496e498ac",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "dcd82e62-ec04-4c9b-8077-f094797ede30",
+      "name": "BambooHR",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "b6bee60d-29b5-407b-9a11-0aea4811aff9",
+      "name": "PDFMonkey",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "8c9e5b9b-e9c8-4356-b9a6-6628932fcd59",
+      "name": "Asana",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "BambooHR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BambooHR": {
+      "main": [
+        [
+          {
+            "node": "PDFMonkey",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PDFMonkey": {
+      "main": [
+        [
+          {
+            "node": "Asana",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "0c75226e-434b-4ad1-8366-704d62b98722"
+}

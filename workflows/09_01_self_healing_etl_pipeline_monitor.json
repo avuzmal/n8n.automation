@@ -1,0 +1,82 @@
+{
+  "name": "09.01 Self-Healing ETL Pipeline Monitor",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-09-01"
+      },
+      "id": "181b49bd-3267-470f-94ed-29ef5c199d39",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Self-Healing ETL Pipeline Monitor\n\n**The Problem:**\nWhen an Airbyte or Fivetran sync fails silently, data engineers only find out days later when executives complain about stale dashboards.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "c08eb44e-2d4d-4e18-bc55-18ffb7660037",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "00e3b37a-f011-4182-9f29-720efdb97b68",
+      "name": "Fivetran/Airbyte Webhooks",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a6c5f7c8-4baf-4580-b2fe-f28fb5c255bd",
+      "name": "PagerDuty",
+      "type": "n8n-nodes-base.pagerDuty",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Fivetran/Airbyte Webhooks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fivetran/Airbyte Webhooks": {
+      "main": [
+        [
+          {
+            "node": "PagerDuty",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "573e08d0-ef23-4050-a97a-0f703e7e0b8e"
+}

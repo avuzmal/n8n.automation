@@ -1,0 +1,104 @@
+{
+  "name": "08.09 Background Conflict of Interest Checks",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-08-09"
+      },
+      "id": "bbc69eb4-ee4a-45f4-958c-db3e5ad1ffa6",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Background Conflict of Interest Checks\n\n**The Problem:**\nEmployees may accidentally have side-gigs or previous employment with a direct competitor or active vendor, creating severe conflicts of interest.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "a7c4e1aa-72ae-4e81-ad1f-c1728f8e09fd",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "2ea76906-d243-41fb-8b5f-103276b0342f",
+      "name": "HRIS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "98888b4c-c871-4bf4-b8f9-526defa48250",
+      "name": "CRM (Client Database)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "72cda3d4-ad0b-4a94-9cb9-e9333a56c084",
+      "name": "Approval System",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "HRIS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HRIS": {
+      "main": [
+        [
+          {
+            "node": "CRM (Client Database)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CRM (Client Database)": {
+      "main": [
+        [
+          {
+            "node": "Approval System",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "6e9dbffd-fd21-4d44-b81b-7eb8b5dd17a0"
+}

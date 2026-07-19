@@ -1,0 +1,104 @@
+{
+  "name": "01.10 Headless Checkout Tax Liability Sync",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-01-10"
+      },
+      "id": "54863ec2-387a-4972-9ae7-52fa9d905dae",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Headless Checkout Tax Liability Sync\n\n**The Problem:**\nGlobal tax compliance (nexus rules, VAT) is notoriously difficult. Syncing e-commerce tax calculations to the ERP often involves messy CSV uploads and data lags.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "166f6951-ddc1-4388-8e91-93990dfca69c",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "b1350ae9-268a-496d-a010-563d63ae0050",
+      "name": "Avalara",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "7e56e132-e805-497b-9e86-fc8378cc7098",
+      "name": "Headless Checkout API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "ba5a1599-8b6a-4676-8bae-ef9bec9b6754",
+      "name": "Workday",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Avalara",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Avalara": {
+      "main": [
+        [
+          {
+            "node": "Headless Checkout API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Headless Checkout API": {
+      "main": [
+        [
+          {
+            "node": "Workday",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "300a6ae0-50c1-4ec9-b260-a337dd63217f"
+}

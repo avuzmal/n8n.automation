@@ -1,0 +1,82 @@
+{
+  "name": "07.06 Automated Technical SEO Monitoring",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-07-06"
+      },
+      "id": "ed773404-4c0e-41e5-87d7-9028c9dd99eb",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Automated Technical SEO Monitoring\n\n**The Problem:**\nDevelopers deploy code changes that accidentally drop meta tags or create 404 loops, destroying SEO rankings before marketing even notices.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "f61304cb-dc7e-4ab6-9803-d0648d3e2608",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "ba16ddbd-95fb-4b50-9fe0-8c1ec80cf097",
+      "name": "Screaming Frog API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "19ce40ce-2896-4ebe-9df7-75a9075c680e",
+      "name": "Jira",
+      "type": "n8n-nodes-base.jira",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Screaming Frog API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Screaming Frog API": {
+      "main": [
+        [
+          {
+            "node": "Jira",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "cec1cf05-4809-4ece-bf8e-04426785a5e1"
+}

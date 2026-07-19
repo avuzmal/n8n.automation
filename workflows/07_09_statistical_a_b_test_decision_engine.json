@@ -1,0 +1,104 @@
+{
+  "name": "07.09 Statistical A/B Test Decision Engine",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-07-09"
+      },
+      "id": "0bc175a2-156c-49a2-ae02-47ce58450d31",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Statistical A/B Test Decision Engine\n\n**The Problem:**\nMarketers often call an A/B test a \"winner\" too early without calculating true statistical significance, leading to poor CRO decisions.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "d5e6acbb-9734-4aa0-b322-a35ba48a9a00",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "5602504c-edee-41bd-a52c-3e8301584c58",
+      "name": "Optimizely",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "6ba7e88a-75cd-4c90-90a9-04ccc90da3e1",
+      "name": "Python Scripting",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f2699d86-00b3-44d9-9b17-e5a7fb9a8784",
+      "name": "CMS/Production System",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Optimizely",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Optimizely": {
+      "main": [
+        [
+          {
+            "node": "Python Scripting",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Python Scripting": {
+      "main": [
+        [
+          {
+            "node": "CMS/Production System",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "777dd371-83da-4fbc-a7b8-7fec1b6ca9ef"
+}

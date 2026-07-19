@@ -1,0 +1,104 @@
+{
+  "name": "09.10 Automated Data Lineage Mapping",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-09-10"
+      },
+      "id": "43234b13-8f79-468b-ab43-ce42e6591ce5",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Automated Data Lineage Mapping\n\n**The Problem:**\nWhen a base table changes, data engineers have no way to know which downstream reports will break because documentation is completely siloed.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "73940309-f3e6-4a01-afa6-617007f17873",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "7ec33eea-9108-4213-a698-f97d93f96b31",
+      "name": "Databricks (Query History)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f4e12fde-52d7-4bb4-86fe-4dedddf0fe26",
+      "name": "SQL Parser",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "ec6ad64a-928c-4bfb-8e52-b841399d2bfd",
+      "name": "Data Catalog",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Databricks (Query History)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Databricks (Query History)": {
+      "main": [
+        [
+          {
+            "node": "SQL Parser",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SQL Parser": {
+      "main": [
+        [
+          {
+            "node": "Data Catalog",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "144d7dba-68b6-41ba-bb71-09053f0ba2cf"
+}

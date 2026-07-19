@@ -1,0 +1,126 @@
+{
+  "name": "10.08 Crisis Communication Broadcaster",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-10-08"
+      },
+      "id": "4a909ea7-0bc6-4efd-85a2-19a2eed27b3f",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Crisis Communication Broadcaster\n\n**The Problem:**\nDuring a PR crisis or severe outage, coordinating the message across the status page, customer emails, and internal Slack takes too long, leading to confused customers.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "faaf57e1-ac50-4f77-b778-d05145d01ed3",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a877c0ad-76a3-4643-b498-6ea6e91a18cb",
+      "name": "StatusPage",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "85d6a490-e3c7-42d0-8323-8c6edad42d7a",
+      "name": "Email Marketing API",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "d3cbacf5-b1ac-4fe7-90e9-4d946e2909d1",
+      "name": "AI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "0c996b5c-b5de-4502-9205-30ec4d55c0bb",
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "StatusPage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "StatusPage": {
+      "main": [
+        [
+          {
+            "node": "Email Marketing API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Marketing API": {
+      "main": [
+        [
+          {
+            "node": "AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "a5652e2a-4135-4d39-bd79-f8bb89b9e9e6"
+}

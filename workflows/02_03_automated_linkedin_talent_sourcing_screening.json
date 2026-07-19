@@ -1,0 +1,126 @@
+{
+  "name": "02.03 Automated LinkedIn Talent Sourcing & Screening",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-02-03"
+      },
+      "id": "dd14957b-1583-4b26-86f3-5a6c47d622c0",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Automated LinkedIn Talent Sourcing & Screening\n\n**The Problem:**\nRecruiters spend too much time manually sourcing candidates, researching profiles, and coordinating initial calls, slowing down the hiring pipeline.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "ddd6d8aa-bca2-48fa-a491-66baead6d39a",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "0f06dc59-83bb-4b83-aee9-e903bb355001",
+      "name": "LinkedIn",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "0f5269ff-63be-4a22-bf53-f9d91f63a84a",
+      "name": "Clearbit",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "d84e163f-c274-47aa-b1d6-3ce9d6d22503",
+      "name": "AI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "eb8b5d7d-afa5-4ffc-bf78-d651d6c1fa01",
+      "name": "Calendly",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "LinkedIn",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LinkedIn": {
+      "main": [
+        [
+          {
+            "node": "Clearbit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clearbit": {
+      "main": [
+        [
+          {
+            "node": "AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI": {
+      "main": [
+        [
+          {
+            "node": "Calendly",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "b28bccd1-a829-4c96-b521-2dc7864b5959"
+}

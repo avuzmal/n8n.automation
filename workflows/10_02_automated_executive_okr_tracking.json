@@ -1,0 +1,104 @@
+{
+  "name": "10.02 Automated Executive OKR Tracking",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-10-02"
+      },
+      "id": "f1cbff2d-5f54-4501-9e4d-4adb0eee803a",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Automated Executive OKR Tracking\n\n**The Problem:**\nDepartment heads forget to update their OKRs. When leadership meets, half the data is stale, making strategic decision-making impossible.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "676b008d-dcb4-437d-a07f-76a14f15289e",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "ed2c1535-5175-482e-af06-d08cc0387e99",
+      "name": "Notion",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "5f258b86-5e8c-4ce3-adc8-d601f21f518e",
+      "name": "Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "ef164996-021e-414b-8ed8-cf89636a825a",
+      "name": "Reporting Logic",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Notion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notion": {
+      "main": [
+        [
+          {
+            "node": "Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email": {
+      "main": [
+        [
+          {
+            "node": "Reporting Logic",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "b4355335-f4b4-44c0-b8ad-382106225363"
+}

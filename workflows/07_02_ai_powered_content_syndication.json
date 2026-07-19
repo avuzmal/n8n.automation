@@ -1,0 +1,148 @@
+{
+  "name": "07.02 AI-Powered Content Syndication",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-07-02"
+      },
+      "id": "203ca8b0-0079-4775-a357-32d4a2a0f06a",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## AI-Powered Content Syndication\n\n**The Problem:**\nWriting a blog post is only half the battle. Distributing it across Medium, LinkedIn, and Twitter requires custom formatting and takes up valuable marketing time.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "3c009b59-ddad-44ff-bc83-a8670ce50e50",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "76c8a130-eb1b-4e97-9a51-2cec316e518f",
+      "name": "WordPress",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "4ce73689-1584-456b-90b6-3410a9841410",
+      "name": "Medium",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "120f4838-53c1-4f7e-8837-ad028b9e65e6",
+      "name": "LinkedIn",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "4cdc9d06-53c6-46aa-ae8e-2f3d1d41bdb3",
+      "name": "Twitter",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "0f3d47bb-eeb1-4f67-9c3e-aeaf83fb070c",
+      "name": "AI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1450,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "WordPress",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WordPress": {
+      "main": [
+        [
+          {
+            "node": "Medium",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Medium": {
+      "main": [
+        [
+          {
+            "node": "LinkedIn",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LinkedIn": {
+      "main": [
+        [
+          {
+            "node": "Twitter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Twitter": {
+      "main": [
+        [
+          {
+            "node": "AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "273ef962-37e3-47c3-a362-00518c6084e9"
+}

@@ -1,0 +1,82 @@
+{
+  "name": "10.05 Cross-Departmental SLA Enforcer",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-10-05"
+      },
+      "id": "daf8e379-ada3-4cf0-b633-060b63326a2e",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Cross-Departmental SLA Enforcer\n\n**The Problem:**\nSales blames CS for slow onboarding; CS blames Sales for poor handoffs. Without tracked SLAs between departments, the customer experience suffers.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "d1bb4128-6c6a-4c9a-9141-4dc7230e93ad",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3dff77a2-2327-4505-a691-142029b24a2f",
+      "name": "Salesforce",
+      "type": "n8n-nodes-base.salesforce",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c4dc51f8-6849-4766-adaf-ab59901519d6",
+      "name": "Ops Dashboard",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Salesforce",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Salesforce": {
+      "main": [
+        [
+          {
+            "node": "Ops Dashboard",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "3f1a8399-d426-47ae-8a4d-6d4fdc2f3d1c"
+}

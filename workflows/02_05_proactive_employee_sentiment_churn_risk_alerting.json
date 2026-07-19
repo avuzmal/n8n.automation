@@ -1,0 +1,104 @@
+{
+  "name": "02.05 Proactive Employee Sentiment & Churn Risk Alerting",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-02-05"
+      },
+      "id": "1eef6245-3c5f-45eb-a15c-265c4ac298b9",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Proactive Employee Sentiment & Churn Risk Alerting\n\n**The Problem:**\nHR often finds out about low team morale or cultural issues too late, resulting in costly employee turnover that could have been prevented.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "0fd794dd-327f-4b7f-93d5-17671a28b2ac",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "29e87ebc-8e16-4d9b-a138-4ba220caa59a",
+      "name": "Culture Amp",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "9f1b55c4-392d-4454-b51e-03ff8c728432",
+      "name": "Outlook",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3171e826-6d40-4730-aac4-9c7b8cbb9609",
+      "name": "Slack/Teams",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Culture Amp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Culture Amp": {
+      "main": [
+        [
+          {
+            "node": "Outlook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Outlook": {
+      "main": [
+        [
+          {
+            "node": "Slack/Teams",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "f5a3fdf5-640f-4958-9ccd-d82d69bee4c4"
+}

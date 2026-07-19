@@ -1,0 +1,126 @@
+{
+  "name": "03.02 Ocean Freight Delay & Rerouting Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-03-02"
+      },
+      "id": "52b03551-8c8c-44af-b344-98b64c2f6ed7",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Ocean Freight Delay & Rerouting Automation\n\n**The Problem:**\nSupply chain delays cause downstream production halts. When shipping updates are missed, customer support and manufacturing teams are left in the dark.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "087a1044-daf4-47d6-b7d8-2cf985b81af5",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "6b45d883-a6fd-4319-987e-645e1a9690f9",
+      "name": "Flexport",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "2d708268-4fe6-457c-94d6-1e6d78c287b6",
+      "name": "Salesforce",
+      "type": "n8n-nodes-base.salesforce",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "9c525c96-267a-4ac5-a654-9e52e652e415",
+      "name": "SMS API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "af8cdc15-4069-404a-b7f9-eb489ce9441c",
+      "name": "MRPeasy",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Flexport",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Flexport": {
+      "main": [
+        [
+          {
+            "node": "Salesforce",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Salesforce": {
+      "main": [
+        [
+          {
+            "node": "SMS API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SMS API": {
+      "main": [
+        [
+          {
+            "node": "MRPeasy",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "b93dc8e9-9017-40b4-b3ab-6196296595b2"
+}

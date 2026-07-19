@@ -1,0 +1,104 @@
+{
+  "name": "05.10 AI-Driven Win/Loss Analysis",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-05-10"
+      },
+      "id": "4b3843d3-45ad-4feb-af46-7bd82fb9744a",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## AI-Driven Win/Loss Analysis\n\n**The Problem:**\n\"Price\" is the default reason reps choose when they lose a deal. True win/loss analysis requires candid feedback from the prospect themselves.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "1b9c4a7e-991b-4841-a023-eb23c34d190a",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "08b39f8c-b9ef-4b9a-b157-9ec9c5ee6e4f",
+      "name": "Salesforce",
+      "type": "n8n-nodes-base.salesforce",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "e3fb3d84-06d7-455d-b07a-61e445e5c48a",
+      "name": "Typeform",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "058cc600-5c17-4d45-bdb7-b4666a78dafc",
+      "name": "AI Parser",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Salesforce",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Salesforce": {
+      "main": [
+        [
+          {
+            "node": "Typeform",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Typeform": {
+      "main": [
+        [
+          {
+            "node": "AI Parser",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "20706df5-549d-4ba6-a6e4-8fc8f041854c"
+}

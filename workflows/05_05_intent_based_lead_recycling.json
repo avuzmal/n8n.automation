@@ -1,0 +1,82 @@
+{
+  "name": "05.05 Intent-Based Lead Recycling",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-05-05"
+      },
+      "id": "12462e37-a77f-4872-ba1f-587eb10333f7",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Intent-Based Lead Recycling\n\n**The Problem:**\nSDRs discard \"Not Right Now\" leads, and marketing rarely nurtures them effectively. When those prospects are ready to buy months later, they go to a competitor.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "949c5f1a-410c-471a-8c51-110547ef74e0",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3a64a420-ef3f-443e-bcae-86d9080ba3c8",
+      "name": "Salesforce",
+      "type": "n8n-nodes-base.salesforce",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "0aa95079-f552-4932-89d2-fd45b4d617a1",
+      "name": "Marketo",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Salesforce",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Salesforce": {
+      "main": [
+        [
+          {
+            "node": "Marketo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "4105f5b6-b76c-4880-b9da-5732c57177c9"
+}

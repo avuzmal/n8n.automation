@@ -1,0 +1,148 @@
+{
+  "name": "01.01 Multi-Currency Revenue Recognition & Reporting",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-01-01"
+      },
+      "id": "3b44926b-bfba-47fe-b276-7935efae32eb",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Multi-Currency Revenue Recognition & Reporting\n\n**The Problem:**\nFinance teams waste hours manually fetching daily FX rates, reconciling discrepancies across global sales, and compiling month-end reports, leading to delayed revenue recognition and compliance risks.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "d48d8d97-c040-4134-a9e3-13d4cce111dc",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "161e67b7-61b0-4808-a477-de3325d3cacf",
+      "name": "SAP ERP",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "8d8407f1-3933-49fb-9a37-45def47c11d7",
+      "name": "Stripe",
+      "type": "n8n-nodes-base.stripe",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "fc7b307b-b91c-43fc-8271-fe5e227cde99",
+      "name": "Salesforce",
+      "type": "n8n-nodes-base.salesforce",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "b5bb73d2-b29f-4b61-ae33-c69017c0c069",
+      "name": "Documint",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "147e4ed7-d6c1-44c9-bdde-a94b109fe2af",
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        1450,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "SAP ERP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SAP ERP": {
+      "main": [
+        [
+          {
+            "node": "Stripe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stripe": {
+      "main": [
+        [
+          {
+            "node": "Salesforce",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Salesforce": {
+      "main": [
+        [
+          {
+            "node": "Documint",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Documint": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "24a0c41c-1b5f-4566-a319-1c2d86d7cd83"
+}

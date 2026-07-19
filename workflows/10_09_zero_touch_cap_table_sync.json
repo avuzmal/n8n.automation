@@ -1,0 +1,104 @@
+{
+  "name": "10.09 Zero-Touch Cap Table Sync",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-10-09"
+      },
+      "id": "bd0644c8-ff92-4d17-a808-d8868d69614b",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Zero-Touch Cap Table Sync\n\n**The Problem:**\nIssuing new equity grants or SAFEs on Carta but failing to update the internal financial models leads to inaccurate dilution forecasts and unhappy investors.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "b6066dce-a109-4fbd-b099-1c1c5902359b",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "6aa3ecba-7b95-4ad2-94cb-704b67ac5201",
+      "name": "Carta",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "9d2f3e01-a6b6-4353-894f-f3c75c2ea3c5",
+      "name": "Spreadsheet",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "04792c96-d65e-4c03-b0ec-2aa135d00e35",
+      "name": "Notification System",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Carta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Carta": {
+      "main": [
+        [
+          {
+            "node": "Spreadsheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spreadsheet": {
+      "main": [
+        [
+          {
+            "node": "Notification System",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "89d8f23f-4feb-43d8-9111-8f36a3a03830"
+}

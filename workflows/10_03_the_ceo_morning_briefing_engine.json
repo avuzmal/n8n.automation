@@ -1,0 +1,126 @@
+{
+  "name": "10.03 The \"CEO Morning Briefing\" Engine",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-10-03"
+      },
+      "id": "ab13df62-e5d1-4d65-b7a5-6ecebd23bf9a",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## The \"CEO Morning Briefing\" Engine\n\n**The Problem:**\nExecutives are overwhelmed by notifications across 10 different apps. They need a single, concise snapshot of the business's health before they start their day.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "bb964251-c6be-46c7-84be-711e0a564e48",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "ef1a76c0-b001-4447-a883-fd9efac15120",
+      "name": "News API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "1d0cf924-5b4b-4805-b62f-8e27140e5a23",
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "b1a8a26f-66d0-4882-b67a-e0021eaceed9",
+      "name": "BI Tool (e.g., Looker)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "16c2ee70-9b6b-47c9-9f4f-ce4987087433",
+      "name": "Email/SMS",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "News API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "News API": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slack": {
+      "main": [
+        [
+          {
+            "node": "BI Tool (e.g., Looker)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BI Tool (e.g., Looker)": {
+      "main": [
+        [
+          {
+            "node": "Email/SMS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "87881616-5f4a-4525-ade9-5e8bbfe392e3"
+}

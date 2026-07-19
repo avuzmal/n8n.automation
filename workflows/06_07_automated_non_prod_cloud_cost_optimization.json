@@ -1,0 +1,104 @@
+{
+  "name": "06.07 Automated Non-Prod Cloud Cost Optimization",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-06-07"
+      },
+      "id": "895ac670-67fd-495b-99c8-e9be134cc424",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Automated Non-Prod Cloud Cost Optimization\n\n**The Problem:**\nDevelopers leave expensive dev/test environments running 24/7 over the weekend, driving up AWS/Azure bills unnecessarily.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "dd061d6a-83c9-41ba-8868-78faad6981e2",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "e5523e70-cefb-477b-8464-247b6f3e1a0c",
+      "name": "AWS Compute Optimizer",
+      "type": "n8n-nodes-base.aws",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "d8582022-1826-486c-b27b-ce20849dfb49",
+      "name": "AWS Lambda",
+      "type": "n8n-nodes-base.aws",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "0b628eec-69a6-47d1-8847-2ccbe4388de4",
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "AWS Compute Optimizer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AWS Compute Optimizer": {
+      "main": [
+        [
+          {
+            "node": "AWS Lambda",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AWS Lambda": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "a5e5b238-b7f5-432b-9770-a27a25064cde"
+}

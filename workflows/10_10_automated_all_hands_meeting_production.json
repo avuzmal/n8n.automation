@@ -1,0 +1,104 @@
+{
+  "name": "10.10 Automated All-Hands Meeting Production",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-10-10"
+      },
+      "id": "88126d82-1e16-49b3-a2e7-a3180e4d7ce5",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Automated All-Hands Meeting Production\n\n**The Problem:**\nProducing a high-quality, monthly all-hands meeting requires gathering slides, writing scripts, and manually uploading the recording for employees who couldn't attend.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "62cfbbe3-c489-476c-8372-99560912ff52",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "6502ba97-4d4b-4ba1-860d-73ed150527e7",
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "e5a6552e-ac01-442e-bea0-5b171e8cff25",
+      "name": "Presentation API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "37151f85-edca-46f1-9b15-ba471011f2ca",
+      "name": "Video Hosting API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slack": {
+      "main": [
+        [
+          {
+            "node": "Presentation API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Presentation API": {
+      "main": [
+        [
+          {
+            "node": "Video Hosting API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "a0de058c-c61f-4b5a-8a49-26a398402de4"
+}

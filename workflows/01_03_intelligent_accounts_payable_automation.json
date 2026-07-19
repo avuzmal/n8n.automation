@@ -1,0 +1,126 @@
+{
+  "name": "01.03 Intelligent Accounts Payable Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-01-03"
+      },
+      "id": "89687ce4-885c-4fa6-a2ed-3df36b1610b3",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Intelligent Accounts Payable Automation\n\n**The Problem:**\nProcessing hundreds of inbound invoices manually is prone to human error, missed PO matching, and delayed payment approvals, straining vendor relationships.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "2b128bb9-c27e-4b93-acd1-cd1fba449d4b",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "06219469-de91-4de1-8675-34cdefc8345f",
+      "name": "Email Inbox",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3cf26049-d4d9-4031-aa5e-8ea579bab5f7",
+      "name": "AWS Textract",
+      "type": "n8n-nodes-base.aws",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f4254e4b-10f0-47d3-92df-8fa97bd6d02e",
+      "name": "Oracle",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3667b718-e340-464b-b0e9-429c1e6810e4",
+      "name": "DocuSign",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Email Inbox",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Inbox": {
+      "main": [
+        [
+          {
+            "node": "AWS Textract",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AWS Textract": {
+      "main": [
+        [
+          {
+            "node": "Oracle",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Oracle": {
+      "main": [
+        [
+          {
+            "node": "DocuSign",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "b81b07a6-7202-4a0b-9a79-481873a42dbc"
+}

@@ -1,0 +1,104 @@
+{
+  "name": "04.01 Proactive Feature Drop-Off Alerting",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-04-01"
+      },
+      "id": "270ad050-ee22-4cf5-a000-137601defe26",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Proactive Feature Drop-Off Alerting\n\n**The Problem:**\nCSMs are often blindsided by churn because they lack visibility into when a customer stops using a key sticky feature in the product.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "86827554-ebf3-4502-ae65-dea63d2ea48d",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "592b853a-a117-4071-8f37-08f427d606c4",
+      "name": "Segment",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "1d5bd24a-7642-4125-8101-ca3e308aa8b6",
+      "name": "Gainsight",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "198ec517-5e93-44ee-b345-9312d5f5c612",
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Segment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Segment": {
+      "main": [
+        [
+          {
+            "node": "Gainsight",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gainsight": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "c82eada8-1885-4a13-9ff4-39395ea2395c"
+}

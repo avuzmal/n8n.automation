@@ -1,0 +1,82 @@
+{
+  "name": "04.09 Account Health Slack Digest",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-04-09"
+      },
+      "id": "76f96d9b-76c6-4fe6-a7b3-eafe8a007566",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Account Health Slack Digest\n\n**The Problem:**\nThe wider company (sales, product, leadership) rarely logs into Customer Success software, creating a blind spot for account risks and expansion opportunities.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "1c81a6e7-9423-452c-b028-dea505e34f5b",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c46a555d-9c9a-4e80-83fe-bc86fb7c076f",
+      "name": "Totango",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "bd313e19-16f5-4011-8d71-97085c8c5484",
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Totango",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Totango": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "cdef24aa-8221-43b0-85ef-4ee36e4ae982"
+}

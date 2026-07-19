@@ -1,0 +1,104 @@
+{
+  "name": "05.08 Contextual Deal Desk Approvals",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-05-08"
+      },
+      "id": "622ad755-b12b-4092-8094-3f1ca2c0b34e",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Contextual Deal Desk Approvals\n\n**The Problem:**\nDiscount approvals are requested in chaotic Slack threads. Leadership lacks visibility into how a 15% discount actually impacts the margin of the deal.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "c3723eb0-0e60-4ee4-b4bc-23f2ee81a91b",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "312eb0f2-bc9f-45cf-995d-2c43e0f659d8",
+      "name": "Salesforce",
+      "type": "n8n-nodes-base.salesforce",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "9b503b7e-f51f-477d-b815-48cdb1d6d0c2",
+      "name": "Slack/Teams",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "ae6bc1f7-9b2a-40b3-a4b7-8da630eefb8c",
+      "name": "ERP (Margin Data)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Salesforce",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Salesforce": {
+      "main": [
+        [
+          {
+            "node": "Slack/Teams",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slack/Teams": {
+      "main": [
+        [
+          {
+            "node": "ERP (Margin Data)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "0cfff580-8069-44a1-b562-3b9e7a30e59b"
+}

@@ -1,0 +1,104 @@
+{
+  "name": "09.04 Statistical Dashboard Anomaly Detection",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-09-04"
+      },
+      "id": "e6782ad0-74bb-4d4f-9a95-c8a1d8d3b7e9",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Statistical Dashboard Anomaly Detection\n\n**The Problem:**\nBusiness owners don't look at dashboards every day. When a key metric crashes, it goes unnoticed unless a data analyst spots it manually.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "f8108635-fd10-4d01-91a6-44df2c3829a5",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f310eb40-6de4-4012-a161-d155aa5349c4",
+      "name": "Looker",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3b2a462b-8905-4ed8-a3c3-22460d1f347d",
+      "name": "Statistical Scripting",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "ae6e120f-3f6b-40f6-a702-5a695574f9f6",
+      "name": "Email/Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Looker",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Looker": {
+      "main": [
+        [
+          {
+            "node": "Statistical Scripting",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Statistical Scripting": {
+      "main": [
+        [
+          {
+            "node": "Email/Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "c3862675-72db-4671-bcbc-6ea446925e08"
+}

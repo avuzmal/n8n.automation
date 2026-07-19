@@ -1,0 +1,126 @@
+{
+  "name": "06.04 Proactive SSL Expiration Prevention",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-06-04"
+      },
+      "id": "207ed440-cbbb-41d3-a4ac-33f6f432f89e",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Proactive SSL Expiration Prevention\n\n**The Problem:**\nExpired SSL certificates cause immediate customer-facing outages and security warnings, yet they are often tracked poorly in manual spreadsheets.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "de02a28d-dfd0-4f20-b741-5086190e9a16",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "e601560d-0045-48c5-b915-ef483c7d5192",
+      "name": "SSL Checker API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a69b5916-da02-4aa8-b619-5c48ef13d2a1",
+      "name": "Jira",
+      "type": "n8n-nodes-base.jira",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "e0237310-d667-48d0-b9bc-ec7752fc3f9d",
+      "name": "PagerDuty",
+      "type": "n8n-nodes-base.pagerDuty",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "57f7c233-d437-4afb-b3bd-f6d83df072d6",
+      "name": "Confluence",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "SSL Checker API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SSL Checker API": {
+      "main": [
+        [
+          {
+            "node": "Jira",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Jira": {
+      "main": [
+        [
+          {
+            "node": "PagerDuty",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PagerDuty": {
+      "main": [
+        [
+          {
+            "node": "Confluence",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "a74ae799-09a2-4a2a-84e8-48c50578b895"
+}

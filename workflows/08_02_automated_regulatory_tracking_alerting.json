@@ -1,0 +1,82 @@
+{
+  "name": "08.02 Automated Regulatory Tracking & Alerting",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-08-02"
+      },
+      "id": "a6a72166-bd12-4105-b5d8-4510bc76b316",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Automated Regulatory Tracking & Alerting\n\n**The Problem:**\nCompliance officers struggle to keep up with changing global data privacy laws (GDPR, CCPA), risking non-compliance fines.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "48d95f55-422c-4c2f-964f-8524ee250870",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "192db055-638c-4beb-a530-3cdc45f12645",
+      "name": "Ascent (or similar Regulatory API)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "dc508dbe-1590-4f53-96f5-23ef2be642ae",
+      "name": "Jira",
+      "type": "n8n-nodes-base.jira",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Ascent (or similar Regulatory API)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ascent (or similar Regulatory API)": {
+      "main": [
+        [
+          {
+            "node": "Jira",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "f64540c6-a8f7-4c07-8662-4e48b5015c71"
+}

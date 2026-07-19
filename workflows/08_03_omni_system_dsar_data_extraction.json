@@ -1,0 +1,126 @@
+{
+  "name": "08.03 Omni-System DSAR Data Extraction",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-08-03"
+      },
+      "id": "e92383f2-d91e-4d56-963b-fb10f656e577",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Omni-System DSAR Data Extraction\n\n**The Problem:**\nExecuting a Data Subject Access Request (DSAR) requires IT to manually query databases, CRMs, and payment gateways, taking weeks to compile.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "66fd2c75-09d3-4f72-b57e-1af2a9b50a3d",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c2e4e891-b0c4-4171-b1b3-edc46a0d7dea",
+      "name": "Secure Form",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "2874e905-a152-49c2-a6e9-2b8675863192",
+      "name": "Salesforce",
+      "type": "n8n-nodes-base.salesforce",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a62869bd-28b4-4705-bd6a-09f78a1d12ed",
+      "name": "Stripe",
+      "type": "n8n-nodes-base.stripe",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "1d662df2-29a4-4503-9abf-eba70af9c7f6",
+      "name": "AWS",
+      "type": "n8n-nodes-base.aws",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Secure Form",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Secure Form": {
+      "main": [
+        [
+          {
+            "node": "Salesforce",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Salesforce": {
+      "main": [
+        [
+          {
+            "node": "Stripe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stripe": {
+      "main": [
+        [
+          {
+            "node": "AWS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "22c7c96d-e5de-4237-9147-f7a906dac4a6"
+}

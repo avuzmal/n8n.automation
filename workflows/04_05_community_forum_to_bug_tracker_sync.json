@@ -1,0 +1,82 @@
+{
+  "name": "04.05 Community Forum to Bug Tracker Sync",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-04-05"
+      },
+      "id": "9cad243d-5def-4a93-81b0-f915ee7b9355",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Community Forum to Bug Tracker Sync\n\n**The Problem:**\nBugs reported by users in public community forums get lost or ignored, leading to frustrated power users and unresolved software defects.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "0a8478b5-e557-49ba-924c-dbece3329606",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "fa697f3f-0dec-4384-a60c-a358fdc6b8d8",
+      "name": "Discourse",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "347f0c14-09f8-475a-8b20-608f038e5ad9",
+      "name": "Jira",
+      "type": "n8n-nodes-base.jira",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Discourse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Discourse": {
+      "main": [
+        [
+          {
+            "node": "Jira",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "149b771a-48e3-4ea9-8b02-cdcc2bed0b21"
+}

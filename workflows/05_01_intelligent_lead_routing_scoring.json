@@ -1,0 +1,104 @@
+{
+  "name": "05.01 Intelligent Lead Routing & Scoring",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-05-01"
+      },
+      "id": "8f0905df-6887-4092-844f-c06a4abfb099",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Intelligent Lead Routing & Scoring\n\n**The Problem:**\nHigh-value inbound leads get lost in round-robin queues or are assigned to the wrong reps, killing momentum and decreasing conversion rates.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "b806e508-ba00-4ca6-bbc7-3487930ad4fd",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "8740ef13-015c-4117-8d1b-1d725521d0e2",
+      "name": "WordPress",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a139cdf9-94b5-44c9-a9ce-f92eb2ea9469",
+      "name": "Clearbit",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "166f884c-2ce8-4ac4-ae4b-5119d48da1b0",
+      "name": "Salesforce",
+      "type": "n8n-nodes-base.salesforce",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "WordPress",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WordPress": {
+      "main": [
+        [
+          {
+            "node": "Clearbit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clearbit": {
+      "main": [
+        [
+          {
+            "node": "Salesforce",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "0c4c8685-67b5-4893-b4ed-91197938c36a"
+}

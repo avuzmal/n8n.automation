@@ -1,0 +1,82 @@
+{
+  "name": "04.08 Pre-Breach SLA Escalation",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-04-08"
+      },
+      "id": "431aef07-643c-4c05-8778-df0f43a56ee5",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Pre-Breach SLA Escalation\n\n**The Problem:**\nBy the time a support ticket breaches its SLA, the customer is already angry and contract penalties may apply. You need to act *before* the breach.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "d6001620-21e2-4926-ada9-f6798568b9ce",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "8da51f14-e8a8-49d7-be31-4a989be3a527",
+      "name": "Freshdesk",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "333c800e-c69c-4919-87b8-d566fe3e352d",
+      "name": "SMS API (Twilio)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Freshdesk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Freshdesk": {
+      "main": [
+        [
+          {
+            "node": "SMS API (Twilio)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "35b876cf-06b6-407b-892d-9602f4165f96"
+}

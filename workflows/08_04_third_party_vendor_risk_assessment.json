@@ -1,0 +1,104 @@
+{
+  "name": "08.04 Third-Party Vendor Risk Assessment",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-08-04"
+      },
+      "id": "8003f15b-fe15-44aa-b7bf-c3446c0d2760",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Third-Party Vendor Risk Assessment\n\n**The Problem:**\nOnboarding a new vendor without a proper security review exposes the company to supply-chain cyber attacks. Doing it manually slows down procurement.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "536e3698-79c2-4363-a9f9-f5bc19d7fdeb",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "05cb236b-4374-43d8-b549-97c89f9a8684",
+      "name": "ERP",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "88f1f0fe-7725-4e9d-9ab4-e90bb75e1a1b",
+      "name": "MS Teams / Forms",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3d05250f-b5dc-4c37-95fc-2bccf582465a",
+      "name": "Risk Scoring Logic",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "ERP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ERP": {
+      "main": [
+        [
+          {
+            "node": "MS Teams / Forms",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MS Teams / Forms": {
+      "main": [
+        [
+          {
+            "node": "Risk Scoring Logic",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "612ce0a1-615f-41bb-886a-79e0de65b686"
+}

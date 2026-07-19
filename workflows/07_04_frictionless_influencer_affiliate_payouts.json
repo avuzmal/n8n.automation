@@ -1,0 +1,104 @@
+{
+  "name": "07.04 Frictionless Influencer & Affiliate Payouts",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-07-04"
+      },
+      "id": "c7ae2dd8-098b-4d3a-afcd-0d8feadf7cec",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Frictionless Influencer & Affiliate Payouts\n\n**The Problem:**\nManaging an affiliate program is great until month-end, when you have to calculate hundreds of micro-commissions and pay them out across different countries.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "85c01842-12cc-4813-883f-691dc3fb22e0",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a6e30f00-21d6-47da-84bf-084233b78c76",
+      "name": "PartnerStack",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "651788fb-0442-4c50-a082-53713145f4a5",
+      "name": "Xero",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "39ca8a14-4bc1-4950-ba71-155700dbfc2b",
+      "name": "Stripe Connect",
+      "type": "n8n-nodes-base.stripe",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "PartnerStack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PartnerStack": {
+      "main": [
+        [
+          {
+            "node": "Xero",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Xero": {
+      "main": [
+        [
+          {
+            "node": "Stripe Connect",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "5eea11b3-59a1-4c2c-ae6c-9478381c45cf"
+}

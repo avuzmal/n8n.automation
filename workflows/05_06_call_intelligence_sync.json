@@ -1,0 +1,104 @@
+{
+  "name": "05.06 Call Intelligence Sync",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-05-06"
+      },
+      "id": "1ae642b2-9195-46b0-a24f-84376f72f74b",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Call Intelligence Sync\n\n**The Problem:**\nSales reps hate writing notes in the CRM, resulting in missing context for Account Managers post-sale and poor handoffs.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "418e9dac-4619-4860-8811-aa07109a03b8",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "7df870f2-7894-498d-a973-5579310a1737",
+      "name": "Gong",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "2cd48331-b80d-4acf-a786-403335b3be96",
+      "name": "AI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "63681009-da10-4cd7-9301-e158c56616fb",
+      "name": "Salesforce",
+      "type": "n8n-nodes-base.salesforce",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Gong",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gong": {
+      "main": [
+        [
+          {
+            "node": "AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI": {
+      "main": [
+        [
+          {
+            "node": "Salesforce",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "d5e49aff-71ac-410c-ab48-4b07b164cac2"
+}

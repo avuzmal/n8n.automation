@@ -1,0 +1,82 @@
+{
+  "name": "05.07 Automated Territory Realignment",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-05-07"
+      },
+      "id": "2e525e01-ef4b-4fe8-91ea-df795a2a4879",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Automated Territory Realignment\n\n**The Problem:**\nWhen a new rep is hired or territories are redrawn, Ops spends days manually exporting, mapping, and mass-updating account owners in the CRM.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "1be18fcb-6f9a-4135-b9c0-a87a1a75ce54",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "2dd3d31d-845f-44b7-8163-4ba4f2e88f27",
+      "name": "Salesforce",
+      "type": "n8n-nodes-base.salesforce",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "7324087f-3a80-4dc5-908b-a265ae41b81f",
+      "name": "Email/Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Salesforce",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Salesforce": {
+      "main": [
+        [
+          {
+            "node": "Email/Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "db4d70b1-a63c-40cc-aff9-efa4f7bd28c7"
+}

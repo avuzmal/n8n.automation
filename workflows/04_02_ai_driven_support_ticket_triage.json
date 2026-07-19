@@ -1,0 +1,104 @@
+{
+  "name": "04.02 AI-Driven Support Ticket Triage",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-04-02"
+      },
+      "id": "03f6174b-4066-4177-aa53-c12d165ec5dd",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## AI-Driven Support Ticket Triage\n\n**The Problem:**\nSupport queues get clogged with low-priority or repetitive questions, delaying responses to critical P1 issues that impact major clients.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "d1c261cd-1806-42ef-ba6d-6efa2966bbaf",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "da135c04-9354-40c0-9978-31a59e71d9e8",
+      "name": "Zendesk",
+      "type": "n8n-nodes-base.zendesk",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "89fb387f-c0b5-4633-9f01-49f19e7efe6f",
+      "name": "AI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "162f1e30-aa3a-4955-b7d5-e3f9d134c7fe",
+      "name": "PagerDuty",
+      "type": "n8n-nodes-base.pagerDuty",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Zendesk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zendesk": {
+      "main": [
+        [
+          {
+            "node": "AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI": {
+      "main": [
+        [
+          {
+            "node": "PagerDuty",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "9edaa7e9-76b3-400e-9fb7-2a66876b0753"
+}

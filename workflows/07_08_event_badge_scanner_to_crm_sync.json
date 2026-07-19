@@ -1,0 +1,104 @@
+{
+  "name": "07.08 Event Badge Scanner to CRM Sync",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-07-08"
+      },
+      "id": "77d00ce6-a619-4491-b31b-c14d894866be",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Event Badge Scanner to CRM Sync\n\n**The Problem:**\nSales reps collect hundreds of business cards at trade shows, but rarely enter them into the CRM promptly, killing post-event momentum.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "aaf668e9-6bff-45a4-8830-ffefe44b6edc",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "8aaf6cd3-3ba5-4cf1-ab09-0303ab54add2",
+      "name": "OCR Scanner App",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "eb018d35-c26d-41be-8086-8e174bd416be",
+      "name": "HubSpot",
+      "type": "n8n-nodes-base.hubspot",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "6c75b4df-2777-444f-b529-e5d9a85344ad",
+      "name": "Email Sequence",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "OCR Scanner App",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OCR Scanner App": {
+      "main": [
+        [
+          {
+            "node": "HubSpot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HubSpot": {
+      "main": [
+        [
+          {
+            "node": "Email Sequence",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "21f03cb6-1bcf-4359-abde-9c8154590036"
+}

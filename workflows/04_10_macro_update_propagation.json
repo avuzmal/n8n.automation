@@ -1,0 +1,104 @@
+{
+  "name": "04.10 Macro-Update Propagation",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-04-10"
+      },
+      "id": "db56986a-b5ee-4ddb-bf8c-3f473c50a433",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Macro-Update Propagation\n\n**The Problem:**\nWhen the product team releases a new feature, support agents are often left using outdated macros, providing incorrect information to users.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "7d457164-6f49-4a7f-b8b6-f25724609c1b",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a2f13714-d434-4b21-87cd-cde0fffb9e5a",
+      "name": "Productboard",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3b32d814-04a0-49dc-8430-92073fd6e7c6",
+      "name": "Zendesk",
+      "type": "n8n-nodes-base.zendesk",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "bfdf7f42-94cc-4387-b93e-244b3ced330c",
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Productboard",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Productboard": {
+      "main": [
+        [
+          {
+            "node": "Zendesk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zendesk": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "bc1f741d-34dd-4ddd-b547-94aaf59568c5"
+}

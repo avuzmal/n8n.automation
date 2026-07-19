@@ -1,0 +1,104 @@
+{
+  "name": "08.01 Zero-Friction Mutual NDA Generation",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-08-01"
+      },
+      "id": "d6a224f6-aded-462a-93e0-cfcd2fcd2547",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Zero-Friction Mutual NDA Generation\n\n**The Problem:**\nSales reps lose momentum when they have to wait days for the legal team to draft, review, and send a standard non-disclosure agreement.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "27fdba75-2796-4d94-8c0b-5cfb89ee5725",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "91f32005-cdd2-4365-9eac-9d73683041b2",
+      "name": "Internal Portal",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "dafa3f75-2b7b-48c3-a805-f753d7922ffe",
+      "name": "PandaDoc",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "372e16f0-fe0a-4193-8c75-35da388605fd",
+      "name": "Contractify",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Internal Portal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Internal Portal": {
+      "main": [
+        [
+          {
+            "node": "PandaDoc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PandaDoc": {
+      "main": [
+        [
+          {
+            "node": "Contractify",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "bb9c5501-7ab0-477d-ad58-25366e323efe"
+}

@@ -1,0 +1,104 @@
+{
+  "name": "02.09 Intelligent Interview Scheduling & Prep",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-02-09"
+      },
+      "id": "3328b17d-51b3-4121-bc75-e0913105a68b",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Intelligent Interview Scheduling & Prep\n\n**The Problem:**\nInterview coordination is the biggest bottleneck in hiring. Candidates drop off when scheduling takes too long, and interviewers often show up unprepared.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "8ff419fa-6cea-4501-bc1b-88caa78841d5",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "bb7b7a6c-ac42-49af-a5fc-8a8b10f294a0",
+      "name": "Greenhouse",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "59c60e31-1786-49f5-a2b4-d0e5e458d106",
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "d55746b6-bea0-4989-8d72-f3775aa828ae",
+      "name": "Google Calendar",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Greenhouse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Greenhouse": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slack": {
+      "main": [
+        [
+          {
+            "node": "Google Calendar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "91b27e95-4736-4260-837c-e208bedeebf1"
+}

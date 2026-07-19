@@ -1,0 +1,104 @@
+{
+  "name": "01.07 Crypto Treasury Real-Time P&L Tracking",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-01-07"
+      },
+      "id": "aacb524c-05b5-4a16-a588-29ab1e998ed1",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Crypto Treasury Real-Time P&L Tracking\n\n**The Problem:**\nManaging corporate crypto treasuries requires constant monitoring. Sudden market shifts can cause massive unnotified losses without real-time tracking systems in place.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "4ad7a129-579e-4061-8b96-20a68a5441a3",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "efb5eb7c-0617-40d9-8b38-df2f6c31e0bf",
+      "name": "Etherscan API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3cd201f4-f0fb-4c4d-8ee7-a6bb23e304e2",
+      "name": "Notion",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "013bdb80-9edc-474c-be12-f93c37a24bf3",
+      "name": "PagerDuty",
+      "type": "n8n-nodes-base.pagerDuty",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Etherscan API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Etherscan API": {
+      "main": [
+        [
+          {
+            "node": "Notion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notion": {
+      "main": [
+        [
+          {
+            "node": "PagerDuty",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "101d2642-3b1f-41db-800a-b706073f2459"
+}

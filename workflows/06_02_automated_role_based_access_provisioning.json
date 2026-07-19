@@ -1,0 +1,104 @@
+{
+  "name": "06.02 Automated Role-Based Access Provisioning",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-06-02"
+      },
+      "id": "eeb9029b-3526-4111-9c72-2e4e01bb3e1c",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Automated Role-Based Access Provisioning\n\n**The Problem:**\nIT helpdesks get bogged down manually granting software licenses based on ServiceNow tickets, slowing down employee productivity and risking over-provisioning.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "6fb9e2c0-a5f2-4779-8348-c8247e3bfcf5",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "b91dcb77-0a71-4880-8f5a-5e5093f8ef98",
+      "name": "ServiceNow",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "4731b847-7709-4e4b-b2ce-8cda6a27197a",
+      "name": "Okta",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f7f232cd-ff69-4946-9721-19c67a19c3f0",
+      "name": "Software APIs",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "ServiceNow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ServiceNow": {
+      "main": [
+        [
+          {
+            "node": "Okta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Okta": {
+      "main": [
+        [
+          {
+            "node": "Software APIs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "a5847e91-0884-46d6-961a-f7949fbdcb23"
+}

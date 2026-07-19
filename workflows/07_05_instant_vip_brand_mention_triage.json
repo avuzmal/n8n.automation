@@ -1,0 +1,104 @@
+{
+  "name": "07.05 Instant VIP Brand Mention Triage",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-07-05"
+      },
+      "id": "b76f48a9-de78-4048-aaf9-85e4dc91159b",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Instant VIP Brand Mention Triage\n\n**The Problem:**\nBy the time a PR team notices a high-profile influencer complaining about the brand on Twitter, the tweet has already gone viral.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "3557c694-e47e-4b29-bfcf-0fe59dde1520",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "b568a24a-b59e-4f5d-a015-af4d900e806d",
+      "name": "Mention API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "710a230b-1891-4840-abce-b0046fdbf94d",
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a901e51f-4675-4dd8-96d0-6b2e3a8e287a",
+      "name": "AI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Mention API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mention API": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slack": {
+      "main": [
+        [
+          {
+            "node": "AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "9e7ea54a-0fab-4851-8a16-c5e774d6ac75"
+}

@@ -1,0 +1,82 @@
+{
+  "name": "09.05 Dynamic PII Masking for Dev Environments",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-09-05"
+      },
+      "id": "cae8d554-dfe8-49aa-b22b-74e34f25f1f0",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Dynamic PII Masking for Dev Environments\n\n**The Problem:**\nCopying production databases to dev environments for testing often accidentally exposes sensitive customer PII to developers, causing massive compliance breaches.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "e313b6fb-1807-498d-b7da-249a6411b469",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "8855927d-d8a8-4057-acd0-10d76a4d097b",
+      "name": "Database Cloning API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "8c85d63c-4eb7-4d29-8a35-57daec986ab0",
+      "name": "Masking Script",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Database Cloning API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Database Cloning API": {
+      "main": [
+        [
+          {
+            "node": "Masking Script",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "e5658ef1-b53b-430b-902b-bcdc15da9388"
+}

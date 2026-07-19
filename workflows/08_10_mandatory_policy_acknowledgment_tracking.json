@@ -1,0 +1,104 @@
+{
+  "name": "08.10 Mandatory Policy Acknowledgment Tracking",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-08-10"
+      },
+      "id": "830850b2-f7f7-4232-84da-c64a81174871",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Mandatory Policy Acknowledgment Tracking\n\n**The Problem:**\nWhen an employee handbook is updated, proving that all 1,000 employees actually read and signed the new policy is a logistical nightmare.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "5eecb55f-c66e-402d-aabe-36c028d32b19",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "30119b74-15cc-4044-8e1f-179b463a8bae",
+      "name": "Gusto",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a3259b22-37e4-44da-9491-d80186cd6619",
+      "name": "Slack/Email",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "4e21b90f-aa8f-473c-9e30-1b8a7851dc9b",
+      "name": "Tracking Database",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Gusto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gusto": {
+      "main": [
+        [
+          {
+            "node": "Slack/Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slack/Email": {
+      "main": [
+        [
+          {
+            "node": "Tracking Database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "e7ccd6e7-3a0b-4c0a-a1f3-648109d086d7"
+}

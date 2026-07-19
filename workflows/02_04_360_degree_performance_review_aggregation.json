@@ -1,0 +1,126 @@
+{
+  "name": "02.04 360-Degree Performance Review Aggregation",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-02-04"
+      },
+      "id": "d8597b25-1c2c-4f7b-bc2e-6fed3539d65b",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## 360-Degree Performance Review Aggregation\n\n**The Problem:**\nPerformance reviews require managers to hunt down data across HR systems and chat apps, making the process biased and incredibly time-consuming.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "12c61692-1da9-4ef1-a388-b550d28b2b4f",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "4c61b20f-4233-440c-81bd-a664ea2ae168",
+      "name": "Lattice",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "764b1a9f-e1ad-470e-9250-935d5f49b62a",
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "4b73d941-7748-4013-86be-737aa2c70138",
+      "name": "Notion",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "76f6e391-749c-45f2-b4a1-eabf523628ab",
+      "name": "Sentiment Analysis AI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Lattice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lattice": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slack": {
+      "main": [
+        [
+          {
+            "node": "Notion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notion": {
+      "main": [
+        [
+          {
+            "node": "Sentiment Analysis AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "e6e17078-b17e-4b9e-9561-439e2192e3f5"
+}

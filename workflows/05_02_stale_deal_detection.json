@@ -1,0 +1,82 @@
+{
+  "name": "05.02 Stale Deal Detection",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-05-02"
+      },
+      "id": "7a8782e9-e341-46df-b028-1d32013c0d47",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Stale Deal Detection\n\n**The Problem:**\nSales reps hold onto dead opportunities to pad their pipelines, making revenue forecasting incredibly inaccurate for leadership.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "504695e3-50ee-466d-bb70-82ba8e0444ea",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "7bfd98fa-d5e3-42bd-b8c6-e80bbbf351b4",
+      "name": "Outreach/Salesloft",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "db405e10-1616-4542-ba47-5d99b2212ece",
+      "name": "Salesforce",
+      "type": "n8n-nodes-base.salesforce",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Outreach/Salesloft",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Outreach/Salesloft": {
+      "main": [
+        [
+          {
+            "node": "Salesforce",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "bb81cf97-44ae-4425-86b2-6367ea5a3c26"
+}

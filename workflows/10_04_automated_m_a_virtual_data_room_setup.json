@@ -1,0 +1,82 @@
+{
+  "name": "10.04 Automated M&A Virtual Data Room Setup",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-10-04"
+      },
+      "id": "fd29caaa-f516-47c3-b3c6-a1b5da159738",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Automated M&A Virtual Data Room Setup\n\n**The Problem:**\nDuring a merger or acquisition, standing up a secure data room and granting granular access to external lawyers and auditors is a massive administrative headache.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "413e5d10-2182-4635-984a-1f126c61a787",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "26eca7b4-05e5-40c5-bc2b-16ad89b4655f",
+      "name": "VDR API (e.g., Firmroom)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "939c5419-a056-462f-afac-467e5e470958",
+      "name": "Identity Provider",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "VDR API (e.g., Firmroom)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VDR API (e.g., Firmroom)": {
+      "main": [
+        [
+          {
+            "node": "Identity Provider",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "063bde3e-b97f-49f2-8b14-128698d669eb"
+}

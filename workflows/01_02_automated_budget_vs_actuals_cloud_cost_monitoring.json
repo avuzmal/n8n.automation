@@ -1,0 +1,126 @@
+{
+  "name": "01.02 Automated Budget vs. Actuals Cloud Cost Monitoring",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-01-02"
+      },
+      "id": "67dbd6f0-8bc7-4f05-8a88-1664f1bd3cf4",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Automated Budget vs. Actuals Cloud Cost Monitoring\n\n**The Problem:**\nCloud spend often spirals out of control before FinOps can catch it. Manual comparison between AWS bills and NetSuite budgets is too slow for agile cost management.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "642d2fb4-32bb-443c-833c-87289bcb94c4",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "45f1d862-dab8-4bb4-a0e4-1b7125ddaa4e",
+      "name": "AWS Cost Explorer",
+      "type": "n8n-nodes-base.aws",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a954f538-06e3-4fbe-8adc-7dcbab461a98",
+      "name": "NetSuite",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "96282a10-ac13-4c32-871a-c03c545e9cb5",
+      "name": "Jira",
+      "type": "n8n-nodes-base.jira",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "43810b9d-e186-457e-8697-94a43af9ece6",
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "AWS Cost Explorer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AWS Cost Explorer": {
+      "main": [
+        [
+          {
+            "node": "NetSuite",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NetSuite": {
+      "main": [
+        [
+          {
+            "node": "Jira",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Jira": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "f67c462a-a64d-41c1-a564-6dcaf7db0c18"
+}

@@ -1,0 +1,104 @@
+{
+  "name": "03.01 Predictive Inventory PO Generation",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-03-01"
+      },
+      "id": "7002de27-02f1-4eeb-a30a-8961e8b00f96",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Predictive Inventory PO Generation\n\n**The Problem:**\nManual inventory checks fail to account for seasonal sales velocity or supplier lead times, resulting in frequent stockouts or costly overstocking.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "b764d41e-506a-4c2e-8ffc-d5a4223bb115",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "42d04a4e-e5af-430a-a1d0-074492d453f2",
+      "name": "Shopify",
+      "type": "n8n-nodes-base.shopify",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "1429d2b9-4cfe-4c46-8bf3-08506e33edd8",
+      "name": "NetSuite",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "7314675c-8ccd-4230-b46d-f7d4446cccb4",
+      "name": "Coupa",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Shopify",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Shopify": {
+      "main": [
+        [
+          {
+            "node": "NetSuite",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NetSuite": {
+      "main": [
+        [
+          {
+            "node": "Coupa",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "bb4c880c-673e-4871-8e4d-23c2bc3900aa"
+}

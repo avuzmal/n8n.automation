@@ -1,0 +1,148 @@
+{
+  "name": "01.05 Omnichannel Sales Aggregation & Data Warehousing",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-01-05"
+      },
+      "id": "b406b343-ca4e-4526-9040-2105f889267b",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Omnichannel Sales Aggregation & Data Warehousing\n\n**The Problem:**\nAggregating daily sales data across multiple platforms (Shopify, Amazon, custom portals) for accurate BI analysis is tedious and requires constant data engineering overhead.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "ba243792-67fa-4a53-bde8-8ad92b1049d2",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f39695e9-61be-4b0b-a4e2-b3e01d73a37f",
+      "name": "Shopify",
+      "type": "n8n-nodes-base.shopify",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c2b20f0a-a1a0-42ad-9203-a8acdbe4669b",
+      "name": "Amazon",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "44e36e2a-f52a-4b9f-b1f8-31a94c69c215",
+      "name": "Snowflake",
+      "type": "n8n-nodes-base.snowflake",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "967a9596-db3c-4590-a470-40d8d719d98a",
+      "name": "dbt",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "6ebf5891-970b-4127-a7e3-a42dcaa96cdc",
+      "name": "SFTP",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1450,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Shopify",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Shopify": {
+      "main": [
+        [
+          {
+            "node": "Amazon",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Amazon": {
+      "main": [
+        [
+          {
+            "node": "Snowflake",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Snowflake": {
+      "main": [
+        [
+          {
+            "node": "dbt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "dbt": {
+      "main": [
+        [
+          {
+            "node": "SFTP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "5bc966a7-3876-4fee-8943-b11e8301281b"
+}

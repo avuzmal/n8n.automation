@@ -1,0 +1,104 @@
+{
+  "name": "06.09 Digital Signature Release Approvals",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-06-09"
+      },
+      "id": "0abe2d56-72c7-4802-957f-483c93170191",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Digital Signature Release Approvals\n\n**The Problem:**\nCAB (Change Advisory Board) approvals are often a rubber-stamp process delayed by waiting for managers to log into the ITSM tool to hit \"Approve\".",
+        "height": 200,
+        "width": 600
+      },
+      "id": "b51395e8-c5ee-4c89-bf1b-64d8b86aa97e",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "306a2e84-9fb2-4594-afc8-ee6758bca883",
+      "name": "Jenkins",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "21a18650-186c-4898-b27a-8280c4d9f88a",
+      "name": "Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "d153fa8e-72ab-4a79-940e-7002d6927697",
+      "name": "Digital Signature API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Jenkins",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Jenkins": {
+      "main": [
+        [
+          {
+            "node": "Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email": {
+      "main": [
+        [
+          {
+            "node": "Digital Signature API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "6c18840a-9e55-42f2-a360-021f4c4d2e80"
+}

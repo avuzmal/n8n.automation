@@ -1,0 +1,104 @@
+{
+  "name": "08.08 Automated IP Infringement Takedowns",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-08-08"
+      },
+      "id": "804dd67b-ca59-403d-8ab9-177fcbecd244",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Automated IP Infringement Takedowns\n\n**The Problem:**\nBrand pirates steal trademarked images and logos across the web. Hunting them down and manually filing DMCA notices is an endless game of whack-a-mole.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "ad39ae10-1d72-4eea-a608-46ac523c870e",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "1b8712dc-26a0-45f1-bb93-a2237c0630bc",
+      "name": "Brand Protection API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "dea8cee0-6705-488f-abf8-82b8bcc09654",
+      "name": "DMCA Generator",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "672938f0-2325-4526-8f32-d7da898e6e77",
+      "name": "Email API",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Brand Protection API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Brand Protection API": {
+      "main": [
+        [
+          {
+            "node": "DMCA Generator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DMCA Generator": {
+      "main": [
+        [
+          {
+            "node": "Email API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "8d60c4d9-0ede-4c8d-9908-92fd98a4af35"
+}

@@ -1,0 +1,126 @@
+{
+  "name": "03.06 AI-Powered RMA & Liquidation Routing",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-03-06"
+      },
+      "id": "8211b0d5-b108-4412-8d25-dfc3357fea2d",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## AI-Powered RMA & Liquidation Routing\n\n**The Problem:**\nProcessing returns manually is a massive cost center. Inspecting returned items and deciding whether to refurbish or liquidate takes too much warehouse labor.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "a487ba86-15df-4fd4-a60f-9c18bc2af79f",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "7e3825d2-7622-4ce8-a7d8-f1ac03decec9",
+      "name": "Returns Portal",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "30ee0a26-2049-4d61-a075-575828f959c2",
+      "name": "AI Vision",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "b48a55aa-c5c6-410c-bcf5-6152f1413eec",
+      "name": "WMS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "168ce239-ae74-4389-94a8-66a85a8006a3",
+      "name": "Stripe",
+      "type": "n8n-nodes-base.stripe",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Returns Portal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Returns Portal": {
+      "main": [
+        [
+          {
+            "node": "AI Vision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Vision": {
+      "main": [
+        [
+          {
+            "node": "WMS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WMS": {
+      "main": [
+        [
+          {
+            "node": "Stripe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "ba686dbf-7593-42a7-81b4-fa3a40c65860"
+}

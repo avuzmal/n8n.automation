@@ -1,0 +1,126 @@
+{
+  "name": "09.02 Automated Data Quality Circuit Breaker",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-09-02"
+      },
+      "id": "862ff7ce-a964-433c-866b-09e5ff8f05dd",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Automated Data Quality Circuit Breaker\n\n**The Problem:**\nBad data ingested from upstream systems pollutes downstream BI reports. By the time it's noticed, the data warehouse is already corrupted.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "52e97787-c6d7-4630-ae93-b928d7b11aa5",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "33366ebb-2914-4a6b-8747-613d7735befb",
+      "name": "Great Expectations",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "e05adc1c-345b-45e4-9303-1503efa31fb9",
+      "name": "dbt",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "7bfa5cdb-0fdf-434e-a687-89ead575e194",
+      "name": "Snowflake",
+      "type": "n8n-nodes-base.snowflake",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f566a2e8-5381-4128-b2e3-cf54779d4239",
+      "name": "Alerting API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Great Expectations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Great Expectations": {
+      "main": [
+        [
+          {
+            "node": "dbt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "dbt": {
+      "main": [
+        [
+          {
+            "node": "Snowflake",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Snowflake": {
+      "main": [
+        [
+          {
+            "node": "Alerting API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "b748a01b-81e2-4233-a326-81c21c1b8a50"
+}

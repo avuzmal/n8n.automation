@@ -1,0 +1,126 @@
+{
+  "name": "01.06 Corporate Card Expense Reconciliation",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-01-06"
+      },
+      "id": "fb370db9-77ad-4422-a982-55e615cda3e7",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Corporate Card Expense Reconciliation\n\n**The Problem:**\nEmployees delay submitting receipts, and finance struggles to match them against corporate card statements, creating massive backlogs at month-end.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "6d4d2bc8-daef-4f66-a1a4-d8b9f6ac63a6",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "243f36d1-3b19-4e9a-8c7a-52caa4eebe77",
+      "name": "Brex",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "54eda67d-9a2c-41ee-8860-9c590d1b5c85",
+      "name": "SharePoint",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "68fd5947-3b48-4721-afae-ed77cee95af0",
+      "name": "AI Vision",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "dcdbc841-44a5-47fc-88a6-3f80a63a9ac1",
+      "name": "QuickBooks Online",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Brex",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Brex": {
+      "main": [
+        [
+          {
+            "node": "SharePoint",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SharePoint": {
+      "main": [
+        [
+          {
+            "node": "AI Vision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Vision": {
+      "main": [
+        [
+          {
+            "node": "QuickBooks Online",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "f8d38734-8bfa-4612-9b2e-cddf1920f21e"
+}

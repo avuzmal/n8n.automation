@@ -1,0 +1,104 @@
+{
+  "name": "03.03 Automated Supplier Quality Scorecarding",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-03-03"
+      },
+      "id": "579f870b-6b9f-478a-a8b1-e7682cad0ba9",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Automated Supplier Quality Scorecarding\n\n**The Problem:**\nEvaluating supplier performance manually is time-consuming and subjective, making it difficult to hold vendors accountable for late deliveries or high defect rates.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "52e741d7-60a8-4961-8566-c0e530afe1ad",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "ff19168e-7320-44c5-b621-f0dba5146967",
+      "name": "WMS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "e200b291-21dd-4e2d-81ee-5afccd4b5bcd",
+      "name": "QA Systems",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "57d0d9f9-5885-4999-af2d-1d1df5b9f75f",
+      "name": "ERP (e.g., SAP/Oracle)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "WMS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WMS": {
+      "main": [
+        [
+          {
+            "node": "QA Systems",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "QA Systems": {
+      "main": [
+        [
+          {
+            "node": "ERP (e.g., SAP/Oracle)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "f24aab8a-0ef4-4c53-9176-c34bf6623900"
+}

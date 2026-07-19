@@ -1,0 +1,126 @@
+{
+  "name": "10.06 Intelligent Executive Travel Concierge",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-10-06"
+      },
+      "id": "cc125908-0aeb-469e-88e2-c44d514e69b2",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Intelligent Executive Travel Concierge\n\n**The Problem:**\nExecutive Assistants waste hours cross-referencing calendars and booking portals to find flights that don't conflict with critical board meetings.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "858810f7-7888-46c7-a9d2-4c14f910fa70",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "8bed53d5-7b2c-4fce-806f-e0a0a5fe1199",
+      "name": "Form",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "fa0d77d8-6135-429f-aa30-780a42462e5e",
+      "name": "Calendar API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "610d48d8-6291-4d7e-ad98-51098d4f03f7",
+      "name": "Travel Booking API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "40a785d5-fe21-4673-a482-c2c480e402f8",
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Form",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Form": {
+      "main": [
+        [
+          {
+            "node": "Calendar API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar API": {
+      "main": [
+        [
+          {
+            "node": "Travel Booking API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Travel Booking API": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "3cdf74e1-79b4-4183-94b3-32cfb8a2e27e"
+}

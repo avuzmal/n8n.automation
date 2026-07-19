@@ -1,0 +1,104 @@
+{
+  "name": "06.10 Zero-Touch MDM Hardware Provisioning",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-06-10"
+      },
+      "id": "eb9f4cd3-a354-4904-9ed1-b1e495eb4cc5",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Zero-Touch MDM Hardware Provisioning\n\n**The Problem:**\nSetting up a new laptop manually with corporate software takes hours of IT time per employee, delaying their Day 1 productivity.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "c45ac418-aa46-46a3-b60b-1485534f76c7",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "6756c184-1f47-465f-bbbb-5f17adb0e612",
+      "name": "SnipeIT",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "d7e8eb61-7666-412c-8da7-bcfbe673def8",
+      "name": "Jamf",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c8d86644-1410-4f48-bd0a-96686dd2f33e",
+      "name": "Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "SnipeIT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SnipeIT": {
+      "main": [
+        [
+          {
+            "node": "Jamf",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Jamf": {
+      "main": [
+        [
+          {
+            "node": "Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "e3d34d83-0f84-40be-ac21-11fd02bdefd7"
+}

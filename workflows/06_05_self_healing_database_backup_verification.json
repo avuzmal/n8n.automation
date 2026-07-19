@@ -1,0 +1,104 @@
+{
+  "name": "06.05 Self-Healing Database Backup Verification",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-06-05"
+      },
+      "id": "7ff5cf0b-3153-46ee-a892-592b56d63f3e",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Self-Healing Database Backup Verification\n\n**The Problem:**\nBackups are scheduled, but rarely tested. A corrupted backup is useless during a ransomware attack or data loss event.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "1159ab0a-2f6d-4ab8-be43-daeac358690d",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "0d3de0ab-ddfa-4e07-8f86-add65644d539",
+      "name": "AWS RDS",
+      "type": "n8n-nodes-base.aws",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f50e71fa-1009-431a-b51b-65ca56530d87",
+      "name": "Checksum Script",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "77c9d74e-f684-4b55-a1f1-4f95008d1226",
+      "name": "Alerting (Slack/Email)",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "AWS RDS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AWS RDS": {
+      "main": [
+        [
+          {
+            "node": "Checksum Script",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Checksum Script": {
+      "main": [
+        [
+          {
+            "node": "Alerting (Slack/Email)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "122ed6f6-d7e5-42f9-a8af-d4e7d3179350"
+}

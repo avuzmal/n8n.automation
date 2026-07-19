@@ -1,0 +1,104 @@
+{
+  "name": "01.08 Fraud-Resistant Vendor Payment Gateway",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-01-08"
+      },
+      "id": "1139d5bd-81f0-49d6-9c44-bc025c66cbce",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Fraud-Resistant Vendor Payment Gateway\n\n**The Problem:**\nVendor bank detail spoofing is a common fraud vector. Verifying payment details and compiling bank transfer files manually exposes the company to massive financial risk.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "84a57f5c-cd09-4a9d-b411-805da0144485",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c77946b8-ac71-45ed-a6d0-201c6ee32c9f",
+      "name": "Coupa",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "e3f12b55-0b27-4f79-8e95-6c34f38370b3",
+      "name": "Fraud Database",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "309113c6-9ec2-4a8c-b4b2-6c79eebf9dd0",
+      "name": "SFTP / Banking Portal",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Coupa",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Coupa": {
+      "main": [
+        [
+          {
+            "node": "Fraud Database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fraud Database": {
+      "main": [
+        [
+          {
+            "node": "SFTP / Banking Portal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "6df94faa-bdfa-495f-a2b1-4ae5088c63bf"
+}

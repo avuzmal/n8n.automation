@@ -1,0 +1,126 @@
+{
+  "name": "04.03 Automated QBR Deck Generation",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-04-03"
+      },
+      "id": "b76a05e5-b2e3-47da-a69f-bf3f1faa46b2",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Automated QBR Deck Generation\n\n**The Problem:**\nCSMs spend hours every quarter manually compiling usage graphs and support metrics to build Quarterly Business Review (QBR) slide decks.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "e82c97ce-987e-4be8-9f7c-6de1858671d2",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "155ab60e-824a-45c5-aa53-b451c3a2378f",
+      "name": "Mixpanel",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "97554917-bbd5-4399-ba55-e6ceb846feaf",
+      "name": "Intercom",
+      "type": "n8n-nodes-base.intercom",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "9ae48f48-caca-4cea-89ff-42ad88bcb480",
+      "name": "Google Slides API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "4eda6170-034c-41fb-9141-f258f026291c",
+      "name": "Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Mixpanel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mixpanel": {
+      "main": [
+        [
+          {
+            "node": "Intercom",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Intercom": {
+      "main": [
+        [
+          {
+            "node": "Google Slides API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Slides API": {
+      "main": [
+        [
+          {
+            "node": "Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "40c221be-d677-4a17-bb4d-5aa89c739d44"
+}

@@ -1,0 +1,104 @@
+{
+  "name": "03.08 Automated Freight Audit & Payment",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-03-08"
+      },
+      "id": "6f64e975-521e-4e61-b19e-81297dbc0d62",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Automated Freight Audit & Payment\n\n**The Problem:**\nCarriers frequently overcharge due to complex rate matrices. Auditing freight bills manually takes hours and companies leave money on the table.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "cf3d59ac-00f9-4c19-aa85-c51565fb1329",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "fe940aa1-9343-4568-b8d4-76bb1cae8169",
+      "name": "Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3f4402c0-d546-4e38-9242-73c36409b2d8",
+      "name": "PDF Parser",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "e2312b28-f665-4fbf-bc15-732f22fe5053",
+      "name": "Database",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email": {
+      "main": [
+        [
+          {
+            "node": "PDF Parser",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PDF Parser": {
+      "main": [
+        [
+          {
+            "node": "Database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "e4475fce-135a-461c-9909-0bf323a5228e"
+}

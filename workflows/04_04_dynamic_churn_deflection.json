@@ -1,0 +1,104 @@
+{
+  "name": "04.04 Dynamic Churn Deflection",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-04-04"
+      },
+      "id": "e975911c-be34-4346-b4e8-f68f148d6561",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Dynamic Churn Deflection\n\n**The Problem:**\nWhen a customer hits 'cancel', relying on them to reach out to support is a lost cause. You need immediate, personalized intervention to save the revenue.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "ee1de9cb-f47c-4d5c-891e-630657513a07",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "b2592c26-268e-456f-9af2-1cd77a0cdfc8",
+      "name": "Stripe",
+      "type": "n8n-nodes-base.stripe",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f4bd0628-521b-4d24-97b5-ab3f94b1b0be",
+      "name": "Email API",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "229dd92b-943a-4921-aabd-88e0acef2e75",
+      "name": "Salesforce",
+      "type": "n8n-nodes-base.salesforce",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Stripe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stripe": {
+      "main": [
+        [
+          {
+            "node": "Email API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email API": {
+      "main": [
+        [
+          {
+            "node": "Salesforce",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "36493551-cd72-442b-97b0-9874aed65c20"
+}

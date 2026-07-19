@@ -1,0 +1,104 @@
+{
+  "name": "06.01 Zero-Touch Incident War Room Creation",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-06-01"
+      },
+      "id": "9bf8dadc-05da-4767-895e-0eb2d57df871",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Zero-Touch Incident War Room Creation\n\n**The Problem:**\nWhen an outage occurs, engineers waste the first 15 critical minutes manually creating Jira tickets, spinning up Slack channels, and digging through PagerDuty schedules to find who is on-call.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "28bc0045-78bc-4767-810b-5e88b039fc0c",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "aeb2f904-bfe1-473b-aba6-eb0f4a24f747",
+      "name": "PagerDuty",
+      "type": "n8n-nodes-base.pagerDuty",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "2e9900d8-eaf8-416d-89fe-15ca97438d64",
+      "name": "Jira",
+      "type": "n8n-nodes-base.jira",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "42540f2a-2bf6-4e10-bbb4-88120a4877b0",
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "PagerDuty",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PagerDuty": {
+      "main": [
+        [
+          {
+            "node": "Jira",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Jira": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "ed49d5d1-d813-4de2-a547-3d66468732a6"
+}

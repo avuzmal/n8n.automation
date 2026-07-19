@@ -1,0 +1,104 @@
+{
+  "name": "09.07 BI Tool \"Data Health\" Digest",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-09-07"
+      },
+      "id": "099654f6-0431-4109-b25c-a7006eb5f091",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## BI Tool \"Data Health\" Digest\n\n**The Problem:**\nThe data team has no idea which dashboards are actually being used by the business, leading to wasted compute costs refreshing abandoned reports.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "040db193-8e4f-4fcf-9a84-daf8adfc012b",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "cf617261-42a8-4315-a3cb-80a1815dd777",
+      "name": "Tableau",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c11711f0-3d08-43a7-9bc0-1406e7400233",
+      "name": "Snowflake Metadata",
+      "type": "n8n-nodes-base.snowflake",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "8f837dbc-8879-42d2-b6e1-de375093eb04",
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Tableau",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tableau": {
+      "main": [
+        [
+          {
+            "node": "Snowflake Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Snowflake Metadata": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "3607ee46-3c57-4876-9d0f-e3a23eacae6c"
+}

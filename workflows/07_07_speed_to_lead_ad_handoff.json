@@ -1,0 +1,104 @@
+{
+  "name": "07.07 Speed-to-Lead Ad Handoff",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-07-07"
+      },
+      "id": "c59cf7e0-944f-479b-b952-0ad2984abb8f",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Speed-to-Lead Ad Handoff\n\n**The Problem:**\nLeads generated from Facebook or LinkedIn forms sit in a CSV file waiting to be downloaded, growing cold by the minute.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "c4c591a9-4493-4649-9425-3bdbeecfa390",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3f4b5946-5d5f-4351-b736-ec40d049c7c8",
+      "name": "Facebook Lead Ads",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "47ecd1ff-eb4c-47c0-8798-510e9dfa8562",
+      "name": "HubSpot",
+      "type": "n8n-nodes-base.hubspot",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "b8552d93-f3b3-4297-9411-5afab1c2b068",
+      "name": "SMS API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Facebook Lead Ads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook Lead Ads": {
+      "main": [
+        [
+          {
+            "node": "HubSpot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HubSpot": {
+      "main": [
+        [
+          {
+            "node": "SMS API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "616a006f-0782-4bd4-8966-3c8301581143"
+}

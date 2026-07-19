@@ -1,0 +1,170 @@
+{
+  "name": "02.01 Seamless Zero-Touch Employee Onboarding",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-02-01"
+      },
+      "id": "75aee03c-b802-419e-a702-288edf4a7a74",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Seamless Zero-Touch Employee Onboarding\n\n**The Problem:**\nOnboarding requires coordinating accounts, hardware, and meetings across multiple disconnected systems, often leaving new hires waiting days for full access.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "32a3d728-816d-4113-8283-3a35dc87cd30",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "ecb8eea6-5f8f-4fdd-8798-09820a72543a",
+      "name": "DocuSign",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c93d505c-4637-4f2c-b457-76eb321b5d51",
+      "name": "Okta",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a067dacf-7e3a-4387-b841-87c41e95f60e",
+      "name": "SnipeIT",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "d563c5a5-b5bb-417a-ad85-103e695b394b",
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c41a8252-7a73-4733-b0b9-9db5f6aa73e2",
+      "name": "Calendly",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "36b561d7-5c17-403a-8718-d34a1325e5b6",
+      "name": "Lattice",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "DocuSign",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DocuSign": {
+      "main": [
+        [
+          {
+            "node": "Okta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Okta": {
+      "main": [
+        [
+          {
+            "node": "SnipeIT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SnipeIT": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slack": {
+      "main": [
+        [
+          {
+            "node": "Calendly",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendly": {
+      "main": [
+        [
+          {
+            "node": "Lattice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "6dae8d16-6173-4223-bd9a-a367f04a3ed8"
+}

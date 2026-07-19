@@ -1,0 +1,82 @@
+{
+  "name": "04.06 Intent-Based Onboarding Sequences",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-04-06"
+      },
+      "id": "c752518f-581f-4817-8ea2-70e1bc84f6ab",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Intent-Based Onboarding Sequences\n\n**The Problem:**\nSending generic, one-size-fits-all onboarding emails results in low engagement. Users only care about the features relevant to their specific use-case.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "e24e430f-a3a8-4706-82db-8c2d1f9ffed6",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "af18a65f-75a4-46d4-9bae-459f26c22dce",
+      "name": "Chili Piper",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "d393422b-276b-4a06-a4a0-23fea4d8e543",
+      "name": "Marketing Automation (e.g., Marketo/HubSpot)",
+      "type": "n8n-nodes-base.hubspot",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Chili Piper",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chili Piper": {
+      "main": [
+        [
+          {
+            "node": "Marketing Automation (e.g., Marketo/HubSpot)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "ebb8dc77-2944-4fe0-861a-6073d6493e6b"
+}

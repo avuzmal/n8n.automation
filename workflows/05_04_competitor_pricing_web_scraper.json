@@ -1,0 +1,104 @@
+{
+  "name": "05.04 Competitor Pricing Web Scraper",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-05-04"
+      },
+      "id": "e48a7397-f697-41f0-8246-a6051c4ea362",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Competitor Pricing Web Scraper\n\n**The Problem:**\nCompetitors change pricing quietly. If sales enablement doesn't know, reps get blindsided on calls and lose deals to cheaper alternatives.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "e51e4780-0259-4899-ba6e-f6fa5ebde1b7",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "55865744-4df4-49ff-99d9-b3ed65b3abfe",
+      "name": "Web Scraper",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "6cb2108f-079d-416d-9339-85b21623e6c8",
+      "name": "Highspot",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a9cf33c2-1196-4e2c-8eb9-5cdde112c795",
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Web Scraper",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Web Scraper": {
+      "main": [
+        [
+          {
+            "node": "Highspot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Highspot": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "11591d7e-f3f8-42db-8a3e-0c97e8373c38"
+}

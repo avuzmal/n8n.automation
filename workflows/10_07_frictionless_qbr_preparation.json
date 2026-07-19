@@ -1,0 +1,82 @@
+{
+  "name": "10.07 Frictionless QBR Preparation",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-10-07"
+      },
+      "id": "df8b3a3c-8cf7-4fcb-8156-bf50bd1a7b05",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Frictionless QBR Preparation\n\n**The Problem:**\nQuarterly Business Reviews for the executive team become messy because every department brings data formatted differently, making it hard to compare apples to apples.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "0a72cae1-93d7-4361-af64-2877bcea5eef",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f60c01d4-8bd1-4db9-a2f4-8e1ee9ddc9bb",
+      "name": "Departmental Data Sources",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c0ff7c25-8316-4dd7-a8bc-bb732953933c",
+      "name": "Notion",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Departmental Data Sources",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Departmental Data Sources": {
+      "main": [
+        [
+          {
+            "node": "Notion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "8f76f86b-e1f4-4f3a-be71-812647bdad04"
+}

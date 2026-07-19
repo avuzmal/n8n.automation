@@ -1,0 +1,126 @@
+{
+  "name": "07.03 Automated Ad Spend Pacing & Pause",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-07-03"
+      },
+      "id": "53cae16d-08bf-46c9-aca3-3b176473c920",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Automated Ad Spend Pacing & Pause\n\n**The Problem:**\nMarketing agencies and internal teams frequently overspend their budgets on Meta or Google Ads because daily pacing is tracked in manual spreadsheets.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "b0b19954-3c3b-466d-aa18-4f466910fcc6",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "835b53c8-3847-4bed-9c07-c9b3468a547a",
+      "name": "Meta Ads",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "e900ab83-aabf-44cd-b87c-ca5ed1b7541d",
+      "name": "Google Ads",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "9bb35aba-bf45-48bf-9dc2-d8e441f137aa",
+      "name": "LinkedIn Ads",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "437a0d79-e74f-4f94-a01f-9e43f64c1d56",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Meta Ads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Meta Ads": {
+      "main": [
+        [
+          {
+            "node": "Google Ads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Ads": {
+      "main": [
+        [
+          {
+            "node": "LinkedIn Ads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LinkedIn Ads": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "d8e64260-5540-4f46-9b79-d58fae977da2"
+}

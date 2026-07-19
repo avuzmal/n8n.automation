@@ -1,0 +1,126 @@
+{
+  "name": "10.01 Zero-Touch Board Deck Assembly",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "webhook-10-01"
+      },
+      "id": "9e78fc7e-ccac-4f75-b8d7-e752e2878aae",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Zero-Touch Board Deck Assembly\n\n**The Problem:**\nThe CEO and Chief of Staff spend a full week every quarter hunting down metrics across different departments to build the Board of Directors slide deck.",
+        "height": 200,
+        "width": 600
+      },
+      "id": "68bf52bf-6e78-4d5a-9284-08407002de11",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        50
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "96f91607-e553-4b67-a4ca-444f67eccd9f",
+      "name": "NetSuite",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "91a0b6ec-c4c8-4bb6-86bb-bd4e122dc969",
+      "name": "ChartMogul",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3f705a73-e19b-42e7-974e-beb883576f33",
+      "name": "Jira",
+      "type": "n8n-nodes-base.jira",
+      "typeVersion": 1,
+      "position": [
+        950,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "31f3aa20-31fd-4310-9693-690cad5e9347",
+      "name": "Google Slides API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "NetSuite",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NetSuite": {
+      "main": [
+        [
+          {
+            "node": "ChartMogul",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ChartMogul": {
+      "main": [
+        [
+          {
+            "node": "Jira",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Jira": {
+      "main": [
+        [
+          {
+            "node": "Google Slides API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "2487741b-ba04-473a-9272-16cc23f518e8"
+}
