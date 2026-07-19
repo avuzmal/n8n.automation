@@ -1,8 +1,26 @@
-# Disable line length check (business briefs require long sentences)
+# Disable line length check
 MD013: false
 
-# Allow inline HTML (needed for some formatting and tables)
+# Allow inline HTML
 MD033: false
 
 # Disable strict table column alignment
 MD060: false
+
+# Disable trailing spaces rule
+MD009: false
+
+# Disable blanks around headings
+MD022: false
+
+# Disable no blanks in blockquotes
+MD028: false
+
+# Disable blanks around fences
+MD031: false
+
+# Disable blanks around lists
+MD032: false
+
+# Allow different heading styles (setext vs atx)
+MD003: false
