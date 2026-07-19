@@ -1,10 +1,91 @@
-1. Design a workflow that monitors product usage via Segment webhooks; if a key feature adoption drops by 20% week-over-week, automatically create a "Health Score Drop" task in Gainsight and alert the CSM via Slack.
-2. Build an automated ticket triage workflow: ingest Zendesk tickets, use AI to classify intent and sentiment, route P1 issues to PagerDuty, and auto-respond to P3 issues with relevant knowledge base articles.
-3. Create a workflow that automates QBR (Quarterly Business Review) prep: pull usage metrics from Mixpanel, pull support ticket volume from Intercom, generate a slide deck via Google Slides API, and email it to the CSM.
-4. Design a workflow that handles automated churn intervention: when a cancellation request is submitted in Stripe, trigger a workflow that offers a dynamic discount via email, and if accepted, updates the subscription and creates a retention win task in Salesforce.
-5. Build a workflow that monitors community forums (Discourse); if a user posts a bug, automatically create a Jira ticket, link it to the forum post, and notify the user when the Jira status changes to "Resolved".
-6. Create an automated onboarding email sequence workflow triggered by a welcome call completion in Chili Piper, dynamically adjusting the email content based on the user's selected use-case during the call.
-7. Design a workflow that aggregates NPS/CSAT scores from Delighted, cross-references them with the customer's ARR in Salesforce, and automatically generates a monthly executive summary report in Notion.
-8. Build a workflow that automates SLA breach prevention: monitor ticket age in Freshdesk, and at 80% of SLA time, automatically escalate the ticket to a Tier 2 agent and notify the Support Manager via SMS.
-9. Create a workflow that syncs customer health scores from Totango to Slack, posting a weekly "Wins and Risks" digest in the #customer-success channel, highlighting top expansions and at-risk accounts.
-10. Design a workflow that automates macro-update propagation: when a product update is published in Productboard, automatically update the relevant macros in Zendesk and notify agents via a Slack digest.
+# 04. Customer Success & Support
+
+> ### 1. Proactive Feature Drop-Off Alerting
+> **The Problem:** CSMs are often blindsided by churn because they lack visibility into when a customer stops using a key sticky feature in the product.
+> 
+> **The Prompt:** 
+> > *Design a workflow that monitors product usage via Segment webhooks; if a key feature adoption drops by 20% week-over-week, automatically create a "Health Score Drop" task in Gainsight and alert the CSM via Slack.*
+> 
+> **🔗 Core Integrations:** `Segment` • `Gainsight` • `Slack`
+> ---
+
+> ### 2. AI-Driven Support Ticket Triage
+> **The Problem:** Support queues get clogged with low-priority or repetitive questions, delaying responses to critical P1 issues that impact major clients.
+> 
+> **The Prompt:** 
+> > *Build an automated ticket triage workflow: ingest Zendesk tickets, use AI to classify intent and sentiment, route P1 issues to PagerDuty, and auto-respond to P3 issues with relevant knowledge base articles.*
+> 
+> **🔗 Core Integrations:** `Zendesk` • `AI` • `PagerDuty`
+> ---
+
+> ### 3. Automated QBR Deck Generation
+> **The Problem:** CSMs spend hours every quarter manually compiling usage graphs and support metrics to build Quarterly Business Review (QBR) slide decks.
+> 
+> **The Prompt:** 
+> > *Create a workflow that automates QBR prep: pull usage metrics from Mixpanel, pull support ticket volume from Intercom, generate a slide deck via Google Slides API, and email it to the CSM.*
+> 
+> **🔗 Core Integrations:** `Mixpanel` • `Intercom` • `Google Slides API` • `Email`
+> ---
+
+> ### 4. Dynamic Churn Deflection
+> **The Problem:** When a customer hits 'cancel', relying on them to reach out to support is a lost cause. You need immediate, personalized intervention to save the revenue.
+> 
+> **The Prompt:** 
+> > *Design a workflow that handles automated churn intervention: when a cancellation request is submitted in Stripe, trigger a workflow that offers a dynamic discount via email, and if accepted, updates the subscription and creates a retention win task in Salesforce.*
+> 
+> **🔗 Core Integrations:** `Stripe` • `Email API` • `Salesforce`
+> ---
+
+> ### 5. Community Forum to Bug Tracker Sync
+> **The Problem:** Bugs reported by users in public community forums get lost or ignored, leading to frustrated power users and unresolved software defects.
+> 
+> **The Prompt:** 
+> > *Build a workflow that monitors community forums (Discourse); if a user posts a bug, automatically create a Jira ticket, link it to the forum post, and notify the user when the Jira status changes to "Resolved".*
+> 
+> **🔗 Core Integrations:** `Discourse` • `Jira`
+> ---
+
+> ### 6. Intent-Based Onboarding Sequences
+> **The Problem:** Sending generic, one-size-fits-all onboarding emails results in low engagement. Users only care about the features relevant to their specific use-case.
+> 
+> **The Prompt:** 
+> > *Create an automated onboarding email sequence workflow triggered by a welcome call completion in Chili Piper, dynamically adjusting the email content based on the user's selected use-case during the call.*
+> 
+> **🔗 Core Integrations:** `Chili Piper` • `Marketing Automation (e.g., Marketo/HubSpot)`
+> ---
+
+> ### 7. Executive CSAT/NPS Correlation
+> **The Problem:** NPS scores exist in a silo. Executives need to know if the unhappy customers are your largest enterprise accounts or your lowest-tier users.
+> 
+> **The Prompt:** 
+> > *Design a workflow that aggregates NPS/CSAT scores from Delighted, cross-references them with the customer's ARR in Salesforce, and automatically generates a monthly executive summary report in Notion.*
+> 
+> **🔗 Core Integrations:** `Delighted` • `Salesforce` • `Notion`
+> ---
+
+> ### 8. Pre-Breach SLA Escalation
+> **The Problem:** By the time a support ticket breaches its SLA, the customer is already angry and contract penalties may apply. You need to act *before* the breach.
+> 
+> **The Prompt:** 
+> > *Build a workflow that automates SLA breach prevention: monitor ticket age in Freshdesk, and at 80% of SLA time, automatically escalate the ticket to a Tier 2 agent and notify the Support Manager via SMS.*
+> 
+> **🔗 Core Integrations:** `Freshdesk` • `SMS API (Twilio)`
+> ---
+
+> ### 9. Account Health Slack Digest
+> **The Problem:** The wider company (sales, product, leadership) rarely logs into Customer Success software, creating a blind spot for account risks and expansion opportunities.
+> 
+> **The Prompt:** 
+> > *Create a workflow that syncs customer health scores from Totango to Slack, posting a weekly "Wins and Risks" digest in the #customer-success channel, highlighting top expansions and at-risk accounts.*
+> 
+> **🔗 Core Integrations:** `Totango` • `Slack`
+> ---
+
+> ### 10. Macro-Update Propagation
+> **The Problem:** When the product team releases a new feature, support agents are often left using outdated macros, providing incorrect information to users.
+> 
+> **The Prompt:** 
+> > *Design a workflow that automates macro-update propagation: when a product update is published in Productboard, automatically update the relevant macros in Zendesk and notify agents via a Slack digest.*
+> 
+> **🔗 Core Integrations:** `Productboard` • `Zendesk` • `Slack`
+> ---
