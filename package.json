@@ -1,0 +1,10 @@
+{
+  "name": "n8n-automation-repo",
+  "version": "1.0.0",
+  "description": "Enterprise n8n workflows",
+  "scripts": {
+    "test": "node scripts/validate_workflows.js"
+  },
+  "author": "",
+  "license": "MIT"
+}

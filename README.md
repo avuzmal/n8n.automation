@@ -1,12 +1,44 @@
 # 🚀 n8n.automation | Enterprise-Grade Automation Workflows
 
+![Build Status](https://img.shields.io/github/actions/workflow/status/avuzmal/n8n.automation/ci.yml?branch=main)
+![License](https://img.shields.io/github/license/avuzmal/n8n.automation)
+![n8n Version](https://img.shields.io/badge/n8n-v1.0+-blue)
+
 Welcome to **n8n.automation**, a curated repository of **100 fully-built, ready-to-import n8n workflows**. This library is designed to solve complex, enterprise-level business problems out of the box.
 
 Whether you are an automation agency, a freelancer, or an enterprise architect, this repository gives you an instant portfolio of high-value solutions to pitch and deploy to your clients.
 
 ---
 
-## 📂 The Workflow Library
+## 📑 Table of Contents
+- [Architecture Overview](#-architecture-overview)
+- [Directory of Automations](#-directory-of-automations)
+- [How to Import Workflows](#-how-to-import-workflows)
+- [Repository Structure](#-repository-structure)
+- [Contributing](#-contributing)
+
+---
+
+## 🏗 Architecture Overview
+
+The repository is built to cleanly separate the business logic (briefs) from the technical implementation (JSON workflows). 
+
+```mermaid
+graph TD
+    A[n8n.automation Repo] --> B[/prompts/]
+    A --> C[/workflows/]
+    
+    B --> D[10 Category Markdown Files]
+    D --> E[100 Business Problem Briefs]
+    E --> F[Visual Integration Flowcharts]
+    
+    C --> G[100 Valid n8n JSON Files]
+    G -.->|Downloads & Maps to| E
+```
+
+---
+
+## 📂 Directory of Automations
 
 We've categorized 100 automated solutions across 10 critical enterprise domains. Click on any category below to view the business problems, explore the visual pipelines, and download the exact n8n JSON files.
 
@@ -25,21 +57,34 @@ We've categorized 100 automated solutions across 10 critical enterprise domains.
 
 ---
 
-## 📖 How to Use This Repo
+## 📖 How to Import Workflows
 
-1. **Browse the Briefs:** Navigate to any of the categories in the `/prompts` directory. Read the business problem and look at the visual Mermaid pipeline to understand the logic.
-2. **Download the Workflow:** Click the `📥 Download n8n JSON` link on any brief to get the exact `.json` file from the `/workflows` directory.
-3. **Import to n8n:** Open your n8n instance, click "Import from File", and upload the JSON. The nodes will be placed on the canvas and perfectly connected!
-4. **Configure:** Add your specific API credentials to the nodes and map the final data fields for your specific environment.
+Deploying these enterprise solutions to your own n8n instance takes less than 60 seconds.
+
+1. **Find your Workflow**: Browse the `/prompts` directory to find the business problem you want to solve.
+2. **Download the JSON**: Click the `📥 Download n8n JSON` link on the brief, or navigate to the `/workflows` directory and download the raw `.json` file.
+3. **Import to n8n**:
+   - Open your n8n workspace.
+   - Click **Add Workflow** (or go to the Workflows screen).
+   - Click the **...** (Options) menu in the top right of the canvas.
+   - Select **Import from File** and upload the downloaded `.json`.
+4. **Configure Credentials**: The nodes will automatically appear on the canvas perfectly connected! Double-click each integration node to add your specific API credentials.
+
+---
 
 ## 🏗 Repository Structure
 
 - **`/prompts`**: The master index of all 100 automations, complete with business briefs and visual architecture flowcharts.
 - **`/workflows`**: The 100 generated `.json` workflow files, ready for import into n8n.
+- **`/scripts`**: Internal Node.js scripts used in CI/CD to validate that all workflows are structurally sound.
+- **`.github/workflows`**: Automated GitHub Actions ensuring no malformed JSONs or exposed credentials are merged.
+
+---
 
 ## 🤝 Contributing
 
-Built a wildly complex edge-case automation? We want it! Open a PR to add your `.json` file to the `/workflows` folder and a brief to the `/prompts` folder.
+We welcome contributions from the enterprise automation community! 
+Please read our [Contributing Guidelines](CONTRIBUTING.md) and our [Code of Conduct](CODE_OF_CONDUCT.md) before submitting a Pull Request.
 
 ---
 *Built for automation architects who build for the enterprise.*
