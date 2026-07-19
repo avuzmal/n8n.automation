@@ -8,6 +8,15 @@
 > **How it works:** 
 > > *Design an n8n workflow that automates the Board of Directors deck creation: pull financial actuals from NetSuite, SaaS metrics from ChartMogul, and product roadmap from Jira, and automatically populate a master Google Slides template.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> NetSuite["NetSuite"]
+>     NetSuite --> ChartMogul["ChartMogul"]
+>     ChartMogul --> Jira["Jira"]
+>     Jira --> GoogleSlidesAPI["Google Slides API"]
+> ```
+> 
 > **🔗 Core Integrations:** `NetSuite` • `ChartMogul` • `Jira` • `Google Slides API`
 > ---
 
@@ -18,6 +27,14 @@
 > 
 > **How it works:** 
 > > *Build a workflow that automates OKR tracking: bi-weekly, pull progress updates from Notion, calculate completion percentages, and automatically generate a "Red/Yellow/Green" status report for the executive team via email.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Notion["Notion"]
+>     Notion --> Email["Email"]
+>     Email --> ReportingLogic["Reporting Logic"]
+> ```
 > 
 > **🔗 Core Integrations:** `Notion` • `Email` • `Reporting Logic`
 > ---
@@ -30,6 +47,15 @@
 > **How it works:** 
 > > *Create an automated executive briefing workflow: every morning at 6 AM, aggregate top news via API, pull internal Slack highlights from #wins, summarize key metrics from the BI tool, and send a personalized morning digest to the CEO.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> NewsAPI["News API"]
+>     NewsAPI --> Slack["Slack"]
+>     Slack --> BIToolegLooker["BI Tool (e.g., Looker)"]
+>     BIToolegLooker --> EmailSMS["Email/SMS"]
+> ```
+> 
 > **🔗 Core Integrations:** `News API` • `Slack` • `BI Tool (e.g., Looker)` • `Email/SMS`
 > ---
 
@@ -40,6 +66,13 @@
 > 
 > **How it works:** 
 > > *Design a workflow that automates M&A data room setup: when a new M&A project is initiated, automatically create a secure VDR (Virtual Data Room) in Firmroom, provision access for legal/finance, and trigger an indexing workflow for uploaded documents.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> VDRAPIegFirmroom["VDR API (e.g., Firmroom)"]
+>     VDRAPIegFirmroom --> IdentityProvider["Identity Provider"]
+> ```
 > 
 > **🔗 Core Integrations:** `VDR API (e.g., Firmroom)` • `Identity Provider`
 > ---
@@ -52,6 +85,13 @@
 > **How it works:** 
 > > *Build a workflow that automates cross-departmental SLA tracking: monitor handoffs between Sales and CS in Salesforce; if the "Time to Onboarding" SLA is breached, automatically flag it in the weekly Ops review and deduct points from the rep's score.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Salesforce["Salesforce"]
+>     Salesforce --> OpsDashboard["Ops Dashboard"]
+> ```
+> 
 > **🔗 Core Integrations:** `Salesforce` • `Ops Dashboard`
 > ---
 
@@ -62,6 +102,15 @@
 > 
 > **How it works:** 
 > > *Create a workflow that automates executive travel booking: when an exec requests travel via a form, check their calendar for conflicts, find the best flights/hotels via API, present options via Slack, and book upon approval.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Form["Form"]
+>     Form --> CalendarAPI["Calendar API"]
+>     CalendarAPI --> TravelBookingAPI["Travel Booking API"]
+>     TravelBookingAPI --> Slack["Slack"]
+> ```
 > 
 > **🔗 Core Integrations:** `Form` • `Calendar API` • `Travel Booking API` • `Slack`
 > ---
@@ -74,6 +123,13 @@
 > **How it works:** 
 > > *Design a workflow that automates quarterly business review (QBR) prep for the exec team: aggregate departmental OKR completions, financial variance reports, and strategic initiative updates into a single Notion dashboard.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> DepartmentalDataSources["Departmental Data Sources"]
+>     DepartmentalDataSources --> Notion["Notion"]
+> ```
+> 
 > **🔗 Core Integrations:** `Departmental Data Sources` • `Notion`
 > ---
 
@@ -84,6 +140,15 @@
 > 
 > **How it works:** 
 > > *Build a workflow that handles automated executive communication: when a critical incident occurs, automatically draft a status page update and a customer-facing email using AI, route for exec approval via Slack, and publish upon click.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> StatusPage["StatusPage"]
+>     StatusPage --> EmailMarketingAPI["Email Marketing API"]
+>     EmailMarketingAPI --> AI["AI"]
+>     AI --> Slack["Slack"]
+> ```
 > 
 > **🔗 Core Integrations:** `StatusPage` • `Email Marketing API` • `AI` • `Slack`
 > ---
@@ -96,6 +161,14 @@
 > **How it works:** 
 > > *Create a workflow that automates cap table management: when a new SAFE or equity grant is signed in Carta, automatically update the internal cap table spreadsheet, notify the CFO, and trigger a legal compliance check.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Carta["Carta"]
+>     Carta --> Spreadsheet["Spreadsheet"]
+>     Spreadsheet --> NotificationSystem["Notification System"]
+> ```
+> 
 > **🔗 Core Integrations:** `Carta` • `Spreadsheet` • `Notification System`
 > ---
 
@@ -106,6 +179,14 @@
 > 
 > **How it works:** 
 > > *Design a workflow that automates the "State of the Company" all-hands meeting: aggregate video shoutouts from Slack, pull key metrics for the presentation, generate a running script for the CEO, and automatically distribute the recording and transcript post-meeting.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Slack["Slack"]
+>     Slack --> PresentationAPI["Presentation API"]
+>     PresentationAPI --> VideoHostingAPI["Video Hosting API"]
+> ```
 > 
 > **🔗 Core Integrations:** `Slack` • `Presentation API` • `Video Hosting API`
 > ---

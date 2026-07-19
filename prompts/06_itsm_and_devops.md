@@ -8,6 +8,14 @@
 > **How it works:** 
 > > *Design an n8n workflow that automates incident response: when a PagerDuty alert fires, automatically create a Jira incident, spin up a dedicated Slack war room, page the on-call engineer, and start a timer for SLA tracking.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> PagerDuty["PagerDuty"]
+>     PagerDuty --> Jira["Jira"]
+>     Jira --> Slack["Slack"]
+> ```
+> 
 > **🔗 Core Integrations:** `PagerDuty` • `Jira` • `Slack`
 > ---
 
@@ -18,6 +26,14 @@
 > 
 > **How it works:** 
 > > *Build a workflow that automates employee access requests: ingest requests from ServiceNow, check the user's role in Okta, automatically provision standard access, and route non-standard access to the data owner for approval.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> ServiceNow["ServiceNow"]
+>     ServiceNow --> Okta["Okta"]
+>     Okta --> SoftwareAPIs["Software APIs"]
+> ```
 > 
 > **🔗 Core Integrations:** `ServiceNow` • `Okta` • `Software APIs`
 > ---
@@ -30,6 +46,15 @@
 > **How it works:** 
 > > *Create an automated CI/CD notification workflow: when a GitHub Actions build fails, parse the error logs, use AI to suggest a fix, post the summary to the #dev-ops Slack channel, and assign a Jira bug to the commit author.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> GitHubActions["GitHub Actions"]
+>     GitHubActions --> AI["AI"]
+>     AI --> Slack["Slack"]
+>     Slack --> Jira["Jira"]
+> ```
+> 
 > **🔗 Core Integrations:** `GitHub Actions` • `AI` • `Slack` • `Jira`
 > ---
 
@@ -40,6 +65,15 @@
 > 
 > **How it works:** 
 > > *Design a workflow that monitors SSL certificates via API; if a certificate expires in <14 days, automatically create a high-priority Jira ticket, alert the DevOps team via PagerDuty, and update the status in Confluence.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> SSLCheckerAPI["SSL Checker API"]
+>     SSLCheckerAPI --> Jira["Jira"]
+>     Jira --> PagerDuty["PagerDuty"]
+>     PagerDuty --> Confluence["Confluence"]
+> ```
 > 
 > **🔗 Core Integrations:** `SSL Checker API` • `Jira` • `PagerDuty` • `Confluence`
 > ---
@@ -52,6 +86,14 @@
 > **How it works:** 
 > > *Build a workflow that automates database backup verification: trigger a daily backup in AWS RDS, run a checksum validation script, and if it fails, automatically restore from the last known good backup and alert the DBA.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> AWSRDS["AWS RDS"]
+>     AWSRDS --> ChecksumScript["Checksum Script"]
+>     ChecksumScript --> AlertingSlackEmail["Alerting (Slack/Email)"]
+> ```
+> 
 > **🔗 Core Integrations:** `AWS RDS` • `Checksum Script` • `Alerting (Slack/Email)`
 > ---
 
@@ -62,6 +104,14 @@
 > 
 > **How it works:** 
 > > *Create an automated vulnerability management workflow: ingest scan results from Qualys, cross-reference with the CMDB in ServiceNow to identify the asset owner, and automatically create remediation tickets based on CVSS severity.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Qualys["Qualys"]
+>     Qualys --> ServiceNowCMDB["ServiceNow CMDB"]
+>     ServiceNowCMDB --> TicketingSystem["Ticketing System"]
+> ```
 > 
 > **🔗 Core Integrations:** `Qualys` • `ServiceNow CMDB` • `Ticketing System`
 > ---
@@ -74,6 +124,14 @@
 > **How it works:** 
 > > *Design a workflow that automates cloud cost optimization: pull AWS Compute Optimizer recommendations, automatically downsize dev/test instances during non-working hours via Lambda, and report savings in a weekly Slack digest.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> AWSComputeOptimizer["AWS Compute Optimizer"]
+>     AWSComputeOptimizer --> AWSLambda["AWS Lambda"]
+>     AWSLambda --> Slack["Slack"]
+> ```
+> 
 > **🔗 Core Integrations:** `AWS Compute Optimizer` • `AWS Lambda` • `Slack`
 > ---
 
@@ -84,6 +142,15 @@
 > 
 > **How it works:** 
 > > *Build a workflow that handles automated password resets: ingest requests via Slackbot, verify identity via Okta MFA prompt, reset the password in Active Directory, and send the temporary password via secure email.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Slackbot["Slackbot"]
+>     Slackbot --> OktaMFA["Okta MFA"]
+>     OktaMFA --> ActiveDirectory["Active Directory"]
+>     ActiveDirectory --> Email["Email"]
+> ```
 > 
 > **🔗 Core Integrations:** `Slackbot` • `Okta MFA` • `Active Directory` • `Email`
 > ---
@@ -96,6 +163,14 @@
 > **How it works:** 
 > > *Create a workflow that automates software deployment approvals: when a release is staged in Jenkins, automatically notify the change advisory board (CAB) via email with a link to the release notes, and proceed only upon digital signature.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Jenkins["Jenkins"]
+>     Jenkins --> Email["Email"]
+>     Email --> DigitalSignatureAPI["Digital Signature API"]
+> ```
+> 
 > **🔗 Core Integrations:** `Jenkins` • `Email` • `Digital Signature API`
 > ---
 
@@ -106,6 +181,14 @@
 > 
 > **How it works:** 
 > > *Design a workflow that syncs hardware inventory: when a new laptop is scanned into SnipeIT, automatically create a user profile in Jamf, generate a pre-stage enrollment profile, and email the setup instructions to the employee.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> SnipeIT["SnipeIT"]
+>     SnipeIT --> Jamf["Jamf"]
+>     Jamf --> Email["Email"]
+> ```
 > 
 > **🔗 Core Integrations:** `SnipeIT` • `Jamf` • `Email`
 > ---

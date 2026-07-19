@@ -8,6 +8,13 @@
 > **How it works:** 
 > > *Build an n8n workflow that automates ETL pipeline monitoring: listen for webhooks from Fivetran/Airbyte; if a sync fails, parse the error, restart the sync, and if it fails twice, page the data engineer via PagerDuty.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> FivetranAirbyteWebhooks["Fivetran/Airbyte Webhooks"]
+>     FivetranAirbyteWebhooks --> PagerDuty["PagerDuty"]
+> ```
+> 
 > **🔗 Core Integrations:** `Fivetran/Airbyte Webhooks` • `PagerDuty`
 > ---
 
@@ -18,6 +25,15 @@
 > 
 > **How it works:** 
 > > *Design a workflow that automates data quality checks: run a Great Expectations script via a webhook; if data quality drops below 99%, automatically halt downstream dbt models in Snowflake and alert the data team.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> GreatExpectations["Great Expectations"]
+>     GreatExpectations --> dbt["dbt"]
+>     dbt --> Snowflake["Snowflake"]
+>     Snowflake --> AlertingAPI["Alerting API"]
+> ```
 > 
 > **🔗 Core Integrations:** `Great Expectations` • `dbt` • `Snowflake` • `Alerting API`
 > ---
@@ -30,6 +46,14 @@
 > **How it works:** 
 > > *Create an automated data dictionary update workflow: when a new column is added to a Snowflake table, automatically extract the metadata, use AI to generate a description, and push it to the data catalog (Atlan).*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Snowflake["Snowflake"]
+>     Snowflake --> AI["AI"]
+>     AI --> DataCatalogAtlan["Data Catalog (Atlan)"]
+> ```
+> 
 > **🔗 Core Integrations:** `Snowflake` • `AI` • `Data Catalog (Atlan)`
 > ---
 
@@ -40,6 +64,14 @@
 > 
 > **How it works:** 
 > > *Build a workflow that automates anomaly detection in dashboards: pull daily metrics from Looker; if a metric deviates >3 standard deviations from the 30-day mean, automatically generate a root-cause analysis prompt and email the data owner.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Looker["Looker"]
+>     Looker --> StatisticalScripting["Statistical Scripting"]
+>     StatisticalScripting --> EmailSlack["Email/Slack"]
+> ```
 > 
 > **🔗 Core Integrations:** `Looker` • `Statistical Scripting` • `Email/Slack`
 > ---
@@ -52,6 +84,13 @@
 > **How it works:** 
 > > *Design a workflow that handles automated data masking: when a production database clone is requested for dev, automatically trigger a script to mask PII (names, emails, SSNs) before provisioning the database to the developer.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> DatabaseCloningAPI["Database Cloning API"]
+>     DatabaseCloningAPI --> MaskingScript["Masking Script"]
+> ```
+> 
 > **🔗 Core Integrations:** `Database Cloning API` • `Masking Script`
 > ---
 
@@ -62,6 +101,14 @@
 > 
 > **How it works:** 
 > > *Create a workflow that automates schema evolution: when a new JSON field is detected in an incoming Kafka topic, automatically update the Avro schema in the Schema Registry and notify the data engineers via Slack.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Kafka["Kafka"]
+>     Kafka --> SchemaRegistry["Schema Registry"]
+>     SchemaRegistry --> Slack["Slack"]
+> ```
 > 
 > **🔗 Core Integrations:** `Kafka` • `Schema Registry` • `Slack`
 > ---
@@ -74,6 +121,14 @@
 > **How it works:** 
 > > *Build a workflow that syncs BI tool metadata to Slack: every Monday, pull the most viewed dashboards from Tableau, the slowest running queries from Snowflake, and post a "Data Health & Usage" digest to the #data-team channel.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Tableau["Tableau"]
+>     Tableau --> SnowflakeMetadata["Snowflake Metadata"]
+>     SnowflakeMetadata --> Slack["Slack"]
+> ```
+> 
 > **🔗 Core Integrations:** `Tableau` • `Snowflake Metadata` • `Slack`
 > ---
 
@@ -84,6 +139,13 @@
 > 
 > **How it works:** 
 > > *Design a workflow that automates data retention policies: monthly, query Snowflake for tables older than X days, generate a drop/alter script, route it for DBA approval via Slack, and execute upon approval.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Snowflake["Snowflake"]
+>     Snowflake --> Slack["Slack"]
+> ```
 > 
 > **🔗 Core Integrations:** `Snowflake` • `Slack`
 > ---
@@ -96,6 +158,13 @@
 > **How it works:** 
 > > *Create a workflow that automates API rate limit handling: when an external API returns a 429 Too Many Requests, automatically parse the Retry-After header, pause the n8n workflow using a Wait node, and resume seamlessly.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> ExternalAPIs["External APIs"]
+>     ExternalAPIs --> WaitNodesn8n["Wait Nodes (n8n)"]
+> ```
+> 
 > **🔗 Core Integrations:** `External APIs` • `Wait Nodes (n8n)`
 > ---
 
@@ -106,6 +175,14 @@
 > 
 > **How it works:** 
 > > *Build a workflow that automates data lineage mapping: parse SQL queries from the query warehouse (e.g., Databricks), extract table dependencies, and automatically update the lineage graph in the data catalog.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> DatabricksQueryHistory["Databricks (Query History)"]
+>     DatabricksQueryHistory --> SQLParser["SQL Parser"]
+>     SQLParser --> DataCatalog["Data Catalog"]
+> ```
 > 
 > **🔗 Core Integrations:** `Databricks (Query History)` • `SQL Parser` • `Data Catalog`
 > ---

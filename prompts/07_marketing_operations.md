@@ -8,6 +8,14 @@
 > **How it works:** 
 > > *Build an n8n workflow that automates webinar operations: when a user registers in Zoom, add them to a Marketo nurture track, send a reminder sequence, and upon completion, push the attendance data to Salesforce and trigger a sales task.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Zoom["Zoom"]
+>     Zoom --> Marketo["Marketo"]
+>     Marketo --> Salesforce["Salesforce"]
+> ```
+> 
 > **🔗 Core Integrations:** `Zoom` • `Marketo` • `Salesforce`
 > ---
 
@@ -18,6 +26,16 @@
 > 
 > **How it works:** 
 > > *Design a workflow that automates content syndication: when a new blog post is published in WordPress, automatically format and push it to Medium, LinkedIn, and Twitter, using AI to generate platform-specific hooks and hashtags.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> WordPress["WordPress"]
+>     WordPress --> Medium["Medium"]
+>     Medium --> LinkedIn["LinkedIn"]
+>     LinkedIn --> Twitter["Twitter"]
+>     Twitter --> AI["AI"]
+> ```
 > 
 > **🔗 Core Integrations:** `WordPress` • `Medium` • `LinkedIn` • `Twitter` • `AI`
 > ---
@@ -30,6 +48,15 @@
 > **How it works:** 
 > > *Create an automated ad spend reconciliation workflow: pull daily spend from Meta Ads, Google Ads, and LinkedIn, compare it against the budget in a master sheet, and automatically pause campaigns in the ad platforms if pacing exceeds 110%.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> MetaAds["Meta Ads"]
+>     MetaAds --> GoogleAds["Google Ads"]
+>     GoogleAds --> LinkedInAds["LinkedIn Ads"]
+>     LinkedInAds --> GoogleSheets["Google Sheets"]
+> ```
+> 
 > **🔗 Core Integrations:** `Meta Ads` • `Google Ads` • `LinkedIn Ads` • `Google Sheets`
 > ---
 
@@ -40,6 +67,14 @@
 > 
 > **How it works:** 
 > > *Build a workflow that automates influencer payouts: track affiliate link clicks and conversions via PartnerStack, calculate commissions, generate invoices via Xero, and trigger payouts via Stripe Connect.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> PartnerStack["PartnerStack"]
+>     PartnerStack --> Xero["Xero"]
+>     Xero --> StripeConnect["Stripe Connect"]
+> ```
 > 
 > **🔗 Core Integrations:** `PartnerStack` • `Xero` • `Stripe Connect`
 > ---
@@ -52,6 +87,14 @@
 > **How it works:** 
 > > *Design a workflow that monitors brand mentions via Mention API; if a high-profile account mentions the brand, automatically alert the PR team via Slack and draft a response using AI based on brand guidelines.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> MentionAPI["Mention API"]
+>     MentionAPI --> Slack["Slack"]
+>     Slack --> AI["AI"]
+> ```
+> 
 > **🔗 Core Integrations:** `Mention API` • `Slack` • `AI`
 > ---
 
@@ -62,6 +105,13 @@
 > 
 > **How it works:** 
 > > *Create an automated SEO audit workflow: trigger a weekly crawl via Screaming Frog API, identify new 404s or dropped meta tags, and automatically create Jira tickets for the dev team to fix them.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> ScreamingFrogAPI["Screaming Frog API"]
+>     ScreamingFrogAPI --> Jira["Jira"]
+> ```
 > 
 > **🔗 Core Integrations:** `Screaming Frog API` • `Jira`
 > ---
@@ -74,6 +124,14 @@
 > **How it works:** 
 > > *Build a workflow that automates lead handoff from ads: ingest form fills from Facebook Lead Ads, enrich via HubSpot, and if the lead meets the ICP, instantly notify the on-demand sales rep via SMS with a link to call the lead.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> FacebookLeadAds["Facebook Lead Ads"]
+>     FacebookLeadAds --> HubSpot["HubSpot"]
+>     HubSpot --> SMSAPI["SMS API"]
+> ```
+> 
 > **🔗 Core Integrations:** `Facebook Lead Ads` • `HubSpot` • `SMS API`
 > ---
 
@@ -84,6 +142,14 @@
 > 
 > **How it works:** 
 > > *Design a workflow that automates event follow-ups: scan business cards via a mobile app (OCR), push contacts to HubSpot, tag them with the event name, and trigger a personalized "Great meeting you" email sequence.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> OCRScannerApp["OCR Scanner App"]
+>     OCRScannerApp --> HubSpot["HubSpot"]
+>     HubSpot --> EmailSequence["Email Sequence"]
+> ```
 > 
 > **🔗 Core Integrations:** `OCR Scanner App` • `HubSpot` • `Email Sequence`
 > ---
@@ -96,6 +162,14 @@
 > **How it works:** 
 > > *Create a workflow that automates A/B test analysis: pull conversion data from Optimizely, run a statistical significance calculation via a Python node, and automatically declare a winner and push the winning variant to production.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Optimizely["Optimizely"]
+>     Optimizely --> PythonScripting["Python Scripting"]
+>     PythonScripting --> CMSProductionSystem["CMS/Production System"]
+> ```
+> 
 > **🔗 Core Integrations:** `Optimizely` • `Python Scripting` • `CMS/Production System`
 > ---
 
@@ -106,6 +180,14 @@
 > 
 > **How it works:** 
 > > *Build a workflow that syncs product feedback from Intercom to Productboard: use AI to summarize the feedback, tag the relevant feature, and update the Productboard status, which then syncs back to the user in Intercom.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Intercom["Intercom"]
+>     Intercom --> Productboard["Productboard"]
+>     Productboard --> AI["AI"]
+> ```
 > 
 > **🔗 Core Integrations:** `Intercom` • `Productboard` • `AI`
 > ---

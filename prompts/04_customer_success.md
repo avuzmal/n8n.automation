@@ -8,6 +8,14 @@
 > **How it works:** 
 > > *Design a workflow that monitors product usage via Segment webhooks; if a key feature adoption drops by 20% week-over-week, automatically create a "Health Score Drop" task in Gainsight and alert the CSM via Slack.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Segment["Segment"]
+>     Segment --> Gainsight["Gainsight"]
+>     Gainsight --> Slack["Slack"]
+> ```
+> 
 > **🔗 Core Integrations:** `Segment` • `Gainsight` • `Slack`
 > ---
 
@@ -18,6 +26,14 @@
 > 
 > **How it works:** 
 > > *Build an automated ticket triage workflow: ingest Zendesk tickets, use AI to classify intent and sentiment, route P1 issues to PagerDuty, and auto-respond to P3 issues with relevant knowledge base articles.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Zendesk["Zendesk"]
+>     Zendesk --> AI["AI"]
+>     AI --> PagerDuty["PagerDuty"]
+> ```
 > 
 > **🔗 Core Integrations:** `Zendesk` • `AI` • `PagerDuty`
 > ---
@@ -30,6 +46,15 @@
 > **How it works:** 
 > > *Create a workflow that automates QBR prep: pull usage metrics from Mixpanel, pull support ticket volume from Intercom, generate a slide deck via Google Slides API, and email it to the CSM.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Mixpanel["Mixpanel"]
+>     Mixpanel --> Intercom["Intercom"]
+>     Intercom --> GoogleSlidesAPI["Google Slides API"]
+>     GoogleSlidesAPI --> Email["Email"]
+> ```
+> 
 > **🔗 Core Integrations:** `Mixpanel` • `Intercom` • `Google Slides API` • `Email`
 > ---
 
@@ -40,6 +65,14 @@
 > 
 > **How it works:** 
 > > *Design a workflow that handles automated churn intervention: when a cancellation request is submitted in Stripe, trigger a workflow that offers a dynamic discount via email, and if accepted, updates the subscription and creates a retention win task in Salesforce.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Stripe["Stripe"]
+>     Stripe --> EmailAPI["Email API"]
+>     EmailAPI --> Salesforce["Salesforce"]
+> ```
 > 
 > **🔗 Core Integrations:** `Stripe` • `Email API` • `Salesforce`
 > ---
@@ -52,6 +85,13 @@
 > **How it works:** 
 > > *Build a workflow that monitors community forums (Discourse); if a user posts a bug, automatically create a Jira ticket, link it to the forum post, and notify the user when the Jira status changes to "Resolved".*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Discourse["Discourse"]
+>     Discourse --> Jira["Jira"]
+> ```
+> 
 > **🔗 Core Integrations:** `Discourse` • `Jira`
 > ---
 
@@ -62,6 +102,13 @@
 > 
 > **How it works:** 
 > > *Create an automated onboarding email sequence workflow triggered by a welcome call completion in Chili Piper, dynamically adjusting the email content based on the user's selected use-case during the call.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> ChiliPiper["Chili Piper"]
+>     ChiliPiper --> MarketingAutomationegMarketoHubSpot["Marketing Automation (e.g., Marketo/HubSpot)"]
+> ```
 > 
 > **🔗 Core Integrations:** `Chili Piper` • `Marketing Automation (e.g., Marketo/HubSpot)`
 > ---
@@ -74,6 +121,14 @@
 > **How it works:** 
 > > *Design a workflow that aggregates NPS/CSAT scores from Delighted, cross-references them with the customer's ARR in Salesforce, and automatically generates a monthly executive summary report in Notion.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Delighted["Delighted"]
+>     Delighted --> Salesforce["Salesforce"]
+>     Salesforce --> Notion["Notion"]
+> ```
+> 
 > **🔗 Core Integrations:** `Delighted` • `Salesforce` • `Notion`
 > ---
 
@@ -84,6 +139,13 @@
 > 
 > **How it works:** 
 > > *Build a workflow that automates SLA breach prevention: monitor ticket age in Freshdesk, and at 80% of SLA time, automatically escalate the ticket to a Tier 2 agent and notify the Support Manager via SMS.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Freshdesk["Freshdesk"]
+>     Freshdesk --> SMSAPITwilio["SMS API (Twilio)"]
+> ```
 > 
 > **🔗 Core Integrations:** `Freshdesk` • `SMS API (Twilio)`
 > ---
@@ -96,6 +158,13 @@
 > **How it works:** 
 > > *Create a workflow that syncs customer health scores from Totango to Slack, posting a weekly "Wins and Risks" digest in the #customer-success channel, highlighting top expansions and at-risk accounts.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Totango["Totango"]
+>     Totango --> Slack["Slack"]
+> ```
+> 
 > **🔗 Core Integrations:** `Totango` • `Slack`
 > ---
 
@@ -106,6 +175,14 @@
 > 
 > **How it works:** 
 > > *Design a workflow that automates macro-update propagation: when a product update is published in Productboard, automatically update the relevant macros in Zendesk and notify agents via a Slack digest.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Productboard["Productboard"]
+>     Productboard --> Zendesk["Zendesk"]
+>     Zendesk --> Slack["Slack"]
+> ```
 > 
 > **🔗 Core Integrations:** `Productboard` • `Zendesk` • `Slack`
 > ---

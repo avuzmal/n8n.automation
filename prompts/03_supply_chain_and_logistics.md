@@ -8,6 +8,14 @@
 > **How it works:** 
 > > *Build an n8n workflow that monitors inventory levels in Shopify, checks lead times in NetSuite, and automatically generates purchase orders in Coupa when stock hits the reorder point, factoring in seasonal velocity adjustments.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Shopify["Shopify"]
+>     Shopify --> NetSuite["NetSuite"]
+>     NetSuite --> Coupa["Coupa"]
+> ```
+> 
 > **🔗 Core Integrations:** `Shopify` • `NetSuite` • `Coupa`
 > ---
 
@@ -18,6 +26,15 @@
 > 
 > **How it works:** 
 > > *Design a workflow that integrates with Flexport API to track ocean freight shipments; if a delay is detected, automatically update the ETA in Salesforce, notify the customer via SMS, and adjust production schedules in MRPeasy.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Flexport["Flexport"]
+>     Flexport --> Salesforce["Salesforce"]
+>     Salesforce --> SMSAPI["SMS API"]
+>     SMSAPI --> MRPeasy["MRPeasy"]
+> ```
 > 
 > **🔗 Core Integrations:** `Flexport` • `Salesforce` • `SMS API` • `MRPeasy`
 > ---
@@ -30,6 +47,14 @@
 > **How it works:** 
 > > *Create an automated supplier scorecard workflow that pulls delivery on-time rates from the WMS, quality defect rates from QA logs, and calculates a monthly score, automatically downgrading suppliers in the ERP if score < 80.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> WMS["WMS"]
+>     WMS --> QASystems["QA Systems"]
+>     QASystems --> ERPegSAPOracle["ERP (e.g., SAP/Oracle)"]
+> ```
+> 
 > **🔗 Core Integrations:** `WMS` • `QA Systems` • `ERP (e.g., SAP/Oracle)`
 > ---
 
@@ -40,6 +65,14 @@
 > 
 > **How it works:** 
 > > *Build a workflow that automates customs documentation: when a commercial invoice is created in SAP, automatically generate a packing list, certificate of origin, and AES filing via API, attaching them to the shipment record.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> SAP["SAP"]
+>     SAP --> DocumentGenerationAPI["Document Generation API"]
+>     DocumentGenerationAPI --> CustomsAPI["Customs API"]
+> ```
 > 
 > **🔗 Core Integrations:** `SAP` • `Document Generation API` • `Customs API`
 > ---
@@ -52,6 +85,14 @@
 > **How it works:** 
 > > *Design a workflow that monitors weather APIs for severe conditions along key shipping routes; if a risk is detected, automatically trigger a rerouting evaluation workflow and alert the logistics control tower via Teams.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> WeatherAPI["Weather API"]
+>     WeatherAPI --> LogisticsSoftware["Logistics Software"]
+>     LogisticsSoftware --> MSTeams["MS Teams"]
+> ```
+> 
 > **🔗 Core Integrations:** `Weather API` • `Logistics Software` • `MS Teams`
 > ---
 
@@ -62,6 +103,15 @@
 > 
 > **How it works:** 
 > > *Create an automated returns processing workflow that ingests RMA requests, checks item condition via uploaded photos (AI vision), routes to refurbishment or liquidation in the WMS, and triggers the refund in Stripe.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> ReturnsPortal["Returns Portal"]
+>     ReturnsPortal --> AIVision["AI Vision"]
+>     AIVision --> WMS["WMS"]
+>     WMS --> Stripe["Stripe"]
+> ```
 > 
 > **🔗 Core Integrations:** `Returns Portal` • `AI Vision` • `WMS` • `Stripe`
 > ---
@@ -74,6 +124,13 @@
 > **How it works:** 
 > > *Build a workflow that syncs 3PL warehouse data (ShipHero) with the ERP (Microsoft Dynamics), automatically reconciling daily inventory counts and flagging discrepancies >1% for physical cycle counts.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> ShipHero["ShipHero"]
+>     ShipHero --> MicrosoftDynamics["Microsoft Dynamics"]
+> ```
+> 
 > **🔗 Core Integrations:** `ShipHero` • `Microsoft Dynamics`
 > ---
 
@@ -84,6 +141,14 @@
 > 
 > **How it works:** 
 > > *Design a workflow that automates freight audit and pay: ingest carrier invoices via email, parse PDFs, compare rates against the contract matrix in a database, and auto-approve or flag disputes for the logistics team.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Email["Email"]
+>     Email --> PDFParser["PDF Parser"]
+>     PDFParser --> Database["Database"]
+> ```
 > 
 > **🔗 Core Integrations:** `Email` • `PDF Parser` • `Database`
 > ---
@@ -96,6 +161,13 @@
 > **How it works:** 
 > > *Create a workflow that monitors supplier risk via API (e.g., Resilinc); if a tier-1 supplier reports a disruption, automatically identify affected SKUs in the ERP and trigger safety stock releases.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> ResilincAPI["Resilinc API"]
+>     ResilincAPI --> ERP["ERP"]
+> ```
+> 
 > **🔗 Core Integrations:** `Resilinc API` • `ERP`
 > ---
 
@@ -106,6 +178,14 @@
 > 
 > **How it works:** 
 > > *Build an automated demand planning workflow that pulls historical sales from the POS, applies a time-series forecasting Python script, and outputs recommended production schedules to the manufacturing execution system (MES).*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> POSSystem["POS System"]
+>     POSSystem --> PythonScripting["Python Scripting"]
+>     PythonScripting --> MES["MES"]
+> ```
 > 
 > **🔗 Core Integrations:** `POS System` • `Python Scripting` • `MES`
 > ---

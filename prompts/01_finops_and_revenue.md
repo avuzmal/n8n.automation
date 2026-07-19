@@ -8,6 +8,16 @@
 > **How it works:** 
 > > *Build an n8n workflow connecting SAP ERP, Stripe, and Salesforce to automate multi-currency revenue recognition, including automated daily FX rate fetching via API, discrepancy flagging in Slack, and generating a monthly PDF report via Documint.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> SAPERP["SAP ERP"]
+>     SAPERP --> Stripe["Stripe"]
+>     Stripe --> Salesforce["Salesforce"]
+>     Salesforce --> Documint["Documint"]
+>     Documint --> Slack["Slack"]
+> ```
+> 
 > **🔗 Core Integrations:** `SAP ERP` • `Stripe` • `Salesforce` • `Documint` • `Slack`
 > ---
 
@@ -18,6 +28,15 @@
 > 
 > **How it works:** 
 > > *Design a workflow that monitors AWS Cost Explorer API, compares actuals vs. budgeted spend in NetSuite, and automatically triggers a Jira ticket for the FinOps team if variance exceeds 5%, including a Slack summary.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> AWSCostExplorer["AWS Cost Explorer"]
+>     AWSCostExplorer --> NetSuite["NetSuite"]
+>     NetSuite --> Jira["Jira"]
+>     Jira --> Slack["Slack"]
+> ```
 > 
 > **🔗 Core Integrations:** `AWS Cost Explorer` • `NetSuite` • `Jira` • `Slack`
 > ---
@@ -30,6 +49,15 @@
 > **How it works:** 
 > > *Create an automated accounts payable workflow that ingests invoices from a dedicated email inbox, uses OCR (via AWS Textract) to extract line items, matches them against POs in Oracle, and routes for multi-tier approval in DocuSign based on amount thresholds.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> EmailInbox["Email Inbox"]
+>     EmailInbox --> AWSTextract["AWS Textract"]
+>     AWSTextract --> Oracle["Oracle"]
+>     Oracle --> DocuSign["DocuSign"]
+> ```
+> 
 > **🔗 Core Integrations:** `Email Inbox` • `AWS Textract` • `Oracle` • `DocuSign`
 > ---
 
@@ -40,6 +68,15 @@
 > 
 > **How it works:** 
 > > *Build a subscription dunning workflow integrating Stripe, Intercom, and Salesforce: on failed payment, pause service via API, trigger a personalized SMS/Email sequence, update CRM opportunity stage, and create a high-priority support ticket if unresolved in 48 hours.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Stripe["Stripe"]
+>     Stripe --> Intercom["Intercom"]
+>     Intercom --> Salesforce["Salesforce"]
+>     Salesforce --> SMSEmailAPI["SMS/Email API"]
+> ```
 > 
 > **🔗 Core Integrations:** `Stripe` • `Intercom` • `Salesforce` • `SMS/Email API`
 > ---
@@ -52,6 +89,16 @@
 > **How it works:** 
 > > *Design a workflow that aggregates daily sales data from Shopify, Amazon, and custom APIs, transforms it using complex JavaScript nodes, and pushes it to a Snowflake data warehouse via SFTP, triggering a dbt run upon completion.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Shopify["Shopify"]
+>     Shopify --> Amazon["Amazon"]
+>     Amazon --> Snowflake["Snowflake"]
+>     Snowflake --> dbt["dbt"]
+>     dbt --> SFTP["SFTP"]
+> ```
+> 
 > **🔗 Core Integrations:** `Shopify` • `Amazon` • `Snowflake` • `dbt` • `SFTP`
 > ---
 
@@ -62,6 +109,15 @@
 > 
 > **How it works:** 
 > > *Create an automated expense reconciliation workflow that pulls corporate card transactions from Brex, matches them against receipts uploaded to a SharePoint folder using AI vision, and posts approved entries to QuickBooks Online.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Brex["Brex"]
+>     Brex --> SharePoint["SharePoint"]
+>     SharePoint --> AIVision["AI Vision"]
+>     AIVision --> QuickBooksOnline["QuickBooks Online"]
+> ```
 > 
 > **🔗 Core Integrations:** `Brex` • `SharePoint` • `AI Vision` • `QuickBooks Online`
 > ---
@@ -74,6 +130,14 @@
 > **How it works:** 
 > > *Build a workflow that monitors crypto treasury wallets via Etherscan API, calculates daily P&L based on real-time oracle prices, and updates a Notion dashboard while alerting the CFO via PagerDuty if daily loss exceeds a set threshold.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> EtherscanAPI["Etherscan API"]
+>     EtherscanAPI --> Notion["Notion"]
+>     Notion --> PagerDuty["PagerDuty"]
+> ```
+> 
 > **🔗 Core Integrations:** `Etherscan API` • `Notion` • `PagerDuty`
 > ---
 
@@ -84,6 +148,14 @@
 > 
 > **How it works:** 
 > > *Design a vendor payment automation workflow that pulls approved invoices from Coupa, checks vendor bank details against a sanitized fraud database, formats BACS/ACH files, and uploads them to the banking portal via SFTP.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Coupa["Coupa"]
+>     Coupa --> FraudDatabase["Fraud Database"]
+>     FraudDatabase --> SFTPBankingPortal["SFTP / Banking Portal"]
+> ```
 > 
 > **🔗 Core Integrations:** `Coupa` • `Fraud Database` • `SFTP / Banking Portal`
 > ---
@@ -96,6 +168,15 @@
 > **How it works:** 
 > > *Create a workflow that automates month-end close tasks: pulling trial balances from Xero, running variance analysis via Python script nodes, and generating a comprehensive Excel report distributed to the board via secure email.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Xero["Xero"]
+>     Xero --> Python["Python"]
+>     Python --> Excelgeneration["Excel generation"]
+>     Excelgeneration --> SecureEmail["Secure Email"]
+> ```
+> 
 > **🔗 Core Integrations:** `Xero` • `Python` • `Excel generation` • `Secure Email`
 > ---
 
@@ -106,6 +187,14 @@
 > 
 > **How it works:** 
 > > *Build an automated tax calculation workflow that integrates Avalara with a custom headless checkout, handling complex nexus rules, and automatically syncing tax liability journals to the general ledger in Workday.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Avalara["Avalara"]
+>     Avalara --> HeadlessCheckoutAPI["Headless Checkout API"]
+>     HeadlessCheckoutAPI --> Workday["Workday"]
+> ```
 > 
 > **🔗 Core Integrations:** `Avalara` • `Headless Checkout API` • `Workday`
 > ---

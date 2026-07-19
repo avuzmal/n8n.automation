@@ -8,6 +8,14 @@
 > **How it works:** 
 > > *Build an n8n workflow that automates lead routing: ingest form fills from WordPress, enrich via Clearbit, score using a custom algorithm, and route to the correct AE in Salesforce based on territory, industry, and company size.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> WordPress["WordPress"]
+>     WordPress --> Clearbit["Clearbit"]
+>     Clearbit --> Salesforce["Salesforce"]
+> ```
+> 
 > **🔗 Core Integrations:** `WordPress` • `Clearbit` • `Salesforce`
 > ---
 
@@ -18,6 +26,13 @@
 > 
 > **How it works:** 
 > > *Design a workflow that syncs email engagement data from Outreach/Salesloft to Salesforce, updating lead/contact activity timelines and triggering a "Stale Deal" alert if no engagement occurs in 14 days.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> OutreachSalesloft["Outreach/Salesloft"]
+>     OutreachSalesloft --> Salesforce["Salesforce"]
+> ```
 > 
 > **🔗 Core Integrations:** `Outreach/Salesloft` • `Salesforce`
 > ---
@@ -30,6 +45,14 @@
 > **How it works:** 
 > > *Create an automated CPQ workflow: when an Opportunity reaches "Negotiation" in Salesforce, automatically generate a quote in PandaDoc using dynamic pricing logic, and upon signature, update the Opportunity to "Closed Won" and trigger provisioning.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Salesforce["Salesforce"]
+>     Salesforce --> PandaDoc["PandaDoc"]
+>     PandaDoc --> ProvisioningAPI["Provisioning API"]
+> ```
+> 
 > **🔗 Core Integrations:** `Salesforce` • `PandaDoc` • `Provisioning API`
 > ---
 
@@ -40,6 +63,14 @@
 > 
 > **How it works:** 
 > > *Build a workflow that monitors competitor pricing via web scraping; if a competitor changes pricing, automatically update the battle card in Highspot and notify the sales enablement team via Slack.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> WebScraper["Web Scraper"]
+>     WebScraper --> Highspot["Highspot"]
+>     Highspot --> Slack["Slack"]
+> ```
 > 
 > **🔗 Core Integrations:** `Web Scraper` • `Highspot` • `Slack`
 > ---
@@ -52,6 +83,13 @@
 > **How it works:** 
 > > *Design a workflow that automates lead recycling: if an SDR marks a lead as "Nurture" in Salesforce, move it to a Marketo nurture track, and automatically re-assign it to an SDR if they download a high-intent asset 6 months later.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Salesforce["Salesforce"]
+>     Salesforce --> Marketo["Marketo"]
+> ```
+> 
 > **🔗 Core Integrations:** `Salesforce` • `Marketo`
 > ---
 
@@ -62,6 +100,14 @@
 > 
 > **How it works:** 
 > > *Create a workflow that integrates Gong call recordings with Salesforce: transcribe the call, extract key objections and next steps via AI, and append a summary to the Opportunity notes and the related Account record.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Gong["Gong"]
+>     Gong --> AI["AI"]
+>     AI --> Salesforce["Salesforce"]
+> ```
 > 
 > **🔗 Core Integrations:** `Gong` • `AI` • `Salesforce`
 > ---
@@ -74,6 +120,13 @@
 > **How it works:** 
 > > *Build an automated territory alignment workflow: when a new AE is hired, automatically reassign existing open opportunities and accounts in Salesforce based on the new geo/industry mapping, notifying affected reps.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Salesforce["Salesforce"]
+>     Salesforce --> EmailSlack["Email/Slack"]
+> ```
+> 
 > **🔗 Core Integrations:** `Salesforce` • `Email/Slack`
 > ---
 
@@ -84,6 +137,14 @@
 > 
 > **How it works:** 
 > > *Design a workflow that automates deal desk approvals: when a discount >15% is applied in Salesforce, automatically route for approval via Slack/Teams, pulling margin data from the ERP to show impact, and updating the Opp upon approval.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Salesforce["Salesforce"]
+>     Salesforce --> SlackTeams["Slack/Teams"]
+>     SlackTeams --> ERPMarginData["ERP (Margin Data)"]
+> ```
 > 
 > **🔗 Core Integrations:** `Salesforce` • `Slack/Teams` • `ERP (Margin Data)`
 > ---
@@ -96,6 +157,13 @@
 > **How it works:** 
 > > *Create a workflow that syncs calendar data from Outlook to Salesforce, automatically logging meetings as "Events" and linking them to the relevant Opportunity and Contacts, ensuring 100% activity logging compliance.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Outlook["Outlook"]
+>     Outlook --> Salesforce["Salesforce"]
+> ```
+> 
 > **🔗 Core Integrations:** `Outlook` • `Salesforce`
 > ---
 
@@ -106,6 +174,14 @@
 > 
 > **How it works:** 
 > > *Build a workflow that automates win/loss analysis: when an Opp is Closed Lost, trigger a Typeform survey; upon submission, parse the feedback, categorize the loss reason, and update a custom "Loss Reason" object in Salesforce for reporting.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Salesforce["Salesforce"]
+>     Salesforce --> Typeform["Typeform"]
+>     Typeform --> AIParser["AI Parser"]
+> ```
 > 
 > **🔗 Core Integrations:** `Salesforce` • `Typeform` • `AI Parser`
 > ---

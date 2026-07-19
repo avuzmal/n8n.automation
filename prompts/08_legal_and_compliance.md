@@ -8,6 +8,14 @@
 > **How it works:** 
 > > *Design an n8n workflow that automates NDA processing: when a request is submitted via a portal, generate a mutual NDA via PandaDoc, route for internal legal review, send to the counterparty, and upon signature, store in Contractify and alert the sales rep.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> InternalPortal["Internal Portal"]
+>     InternalPortal --> PandaDoc["PandaDoc"]
+>     PandaDoc --> Contractify["Contractify"]
+> ```
+> 
 > **🔗 Core Integrations:** `Internal Portal` • `PandaDoc` • `Contractify`
 > ---
 
@@ -18,6 +26,13 @@
 > 
 > **How it works:** 
 > > *Build a workflow that monitors regulatory changes via an API (e.g., Ascent); if a new GDPR directive is published, automatically create a compliance task in Jira, assign it to the DPO, and link relevant internal policies.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> AscentorsimilarRegulatoryAPI["Ascent (or similar Regulatory API)"]
+>     AscentorsimilarRegulatoryAPI --> Jira["Jira"]
+> ```
 > 
 > **🔗 Core Integrations:** `Ascent (or similar Regulatory API)` • `Jira`
 > ---
@@ -30,6 +45,15 @@
 > **How it works:** 
 > > *Create an automated data subject access request (DSAR) workflow: ingest requests via a secure form, verify identity, trigger data extraction scripts across Salesforce, Stripe, and AWS, compile into a secure ZIP, and deliver to the user.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> SecureForm["Secure Form"]
+>     SecureForm --> Salesforce["Salesforce"]
+>     Salesforce --> Stripe["Stripe"]
+>     Stripe --> AWS["AWS"]
+> ```
+> 
 > **🔗 Core Integrations:** `Secure Form` • `Salesforce` • `Stripe` • `AWS`
 > ---
 
@@ -40,6 +64,14 @@
 > 
 > **How it works:** 
 > > *Design a workflow that automates vendor risk assessments: when a new vendor is added to the ERP, trigger a Security Questionnaire via Teams; upon completion, score the risk, and if high, block the vendor in the ERP until remediated.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> ERP["ERP"]
+>     ERP --> MSTeamsForms["MS Teams / Forms"]
+>     MSTeamsForms --> RiskScoringLogic["Risk Scoring Logic"]
+> ```
 > 
 > **🔗 Core Integrations:** `ERP` • `MS Teams / Forms` • `Risk Scoring Logic`
 > ---
@@ -52,6 +84,14 @@
 > **How it works:** 
 > > *Build a workflow that monitors insider threat indicators: aggregate login anomalies from Okta and large data downloads from the DLP system; if a threshold is crossed, automatically lock the account and alert the CISO via PagerDuty.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Okta["Okta"]
+>     Okta --> DLPSystem["DLP System"]
+>     DLPSystem --> PagerDuty["PagerDuty"]
+> ```
+> 
 > **🔗 Core Integrations:** `Okta` • `DLP System` • `PagerDuty`
 > ---
 
@@ -62,6 +102,14 @@
 > 
 > **How it works:** 
 > > *Create an automated contract renewal workflow: monitor contract end dates in Ironclad; at 90 days out, automatically notify the account owner, generate a renewal quote, and route for legal review.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Ironclad["Ironclad"]
+>     Ironclad --> QuoteGenerator["Quote Generator"]
+>     QuoteGenerator --> EmailSlack["Email/Slack"]
+> ```
 > 
 > **🔗 Core Integrations:** `Ironclad` • `Quote Generator` • `Email/Slack`
 > ---
@@ -74,6 +122,15 @@
 > **How it works:** 
 > > *Design a workflow that automates SOC2 evidence collection: weekly, pull access logs from Okta, change logs from GitHub, and backup logs from AWS, compile them into a standardized folder structure, and upload to the audit portal (Vanta).*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Okta["Okta"]
+>     Okta --> GitHub["GitHub"]
+>     GitHub --> AWS["AWS"]
+>     AWS --> Vantaorsimilar["Vanta (or similar)"]
+> ```
+> 
 > **🔗 Core Integrations:** `Okta` • `GitHub` • `AWS` • `Vanta (or similar)`
 > ---
 
@@ -84,6 +141,14 @@
 > 
 > **How it works:** 
 > > *Build a workflow that handles automated IP infringement takedowns: monitor the web for unauthorized use of trademarks via a brand protection API, automatically generate DMCA notices, and submit them to the hosting providers.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> BrandProtectionAPI["Brand Protection API"]
+>     BrandProtectionAPI --> DMCAGenerator["DMCA Generator"]
+>     DMCAGenerator --> EmailAPI["Email API"]
+> ```
 > 
 > **🔗 Core Integrations:** `Brand Protection API` • `DMCA Generator` • `Email API`
 > ---
@@ -96,6 +161,14 @@
 > **How it works:** 
 > > *Create a workflow that automates conflict of interest checks: when a new hire is onboarded, cross-reference their name and previous employers against a database of current clients and partners, flagging any overlaps for HR/Legal review.*
 > 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> HRIS["HRIS"]
+>     HRIS --> CRMClientDatabase["CRM (Client Database)"]
+>     CRMClientDatabase --> ApprovalSystem["Approval System"]
+> ```
+> 
 > **🔗 Core Integrations:** `HRIS` • `CRM (Client Database)` • `Approval System`
 > ---
 
@@ -106,6 +179,14 @@
 > 
 > **How it works:** 
 > > *Design a workflow that automates policy acknowledgment: when an HR policy is updated in Gusto, automatically push it to all employees via Slack/Email, track acknowledgments, and escalate to managers for those who haven't signed in 7 days.*
+> 
+> **Visual Pipeline:**
+> ```mermaid
+> graph LR
+>     Trigger[Webhook Trigger] --> Gusto["Gusto"]
+>     Gusto --> SlackEmail["Slack/Email"]
+>     SlackEmail --> TrackingDatabase["Tracking Database"]
+> ```
 > 
 > **🔗 Core Integrations:** `Gusto` • `Slack/Email` • `Tracking Database`
 > ---
