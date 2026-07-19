@@ -1,0 +1,108 @@
+{
+  "name": "011 - VIP Ticket Escalation",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "Intercom Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "Check Stripe Tier",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "If Enterprise",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-3",
+      "name": "PagerDuty Alert",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        850,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-4",
+      "name": "Slack VIP Channel",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        250,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "Intercom Webhook": {
+      "main": [
+        [
+          {
+            "node": "Check Stripe Tier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Stripe Tier": {
+      "main": [
+        [
+          {
+            "node": "If Enterprise",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Enterprise": {
+      "main": [
+        [
+          {
+            "node": "PagerDuty Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PagerDuty Alert": {
+      "main": [
+        [
+          {
+            "node": "Slack VIP Channel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

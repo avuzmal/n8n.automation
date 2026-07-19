@@ -1,0 +1,86 @@
+{
+  "name": "012 - Automated Refund Processing",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "Zendesk Tag Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "Stripe Refund API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "Update Zendesk",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-3",
+      "name": "Email Customer",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        850,
+        200
+      ]
+    }
+  ],
+  "connections": {
+    "Zendesk Tag Trigger": {
+      "main": [
+        [
+          {
+            "node": "Stripe Refund API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stripe Refund API": {
+      "main": [
+        [
+          {
+            "node": "Update Zendesk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Zendesk": {
+      "main": [
+        [
+          {
+            "node": "Email Customer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

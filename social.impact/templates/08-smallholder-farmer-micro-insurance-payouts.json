@@ -1,0 +1,152 @@
+{
+  "name": "08 - Smallholder Farmer Micro-Insurance Payouts",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "Cron Trigger",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "Weather Station API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "Satellite Soil Moisture",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-3",
+      "name": "Rainfall Threshold Check",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        850,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-4",
+      "name": "Smart Contract Logic",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        250,
+        400
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-5",
+      "name": "M-Pesa API Transfer",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        400
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-6",
+      "name": "SMS Confirmation",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        650,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "Cron Trigger": {
+      "main": [
+        [
+          {
+            "node": "Weather Station API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Weather Station API": {
+      "main": [
+        [
+          {
+            "node": "Satellite Soil Moisture",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Satellite Soil Moisture": {
+      "main": [
+        [
+          {
+            "node": "Rainfall Threshold Check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rainfall Threshold Check": {
+      "main": [
+        [
+          {
+            "node": "Smart Contract Logic",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Smart Contract Logic": {
+      "main": [
+        [
+          {
+            "node": "M-Pesa API Transfer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "M-Pesa API Transfer": {
+      "main": [
+        [
+          {
+            "node": "SMS Confirmation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

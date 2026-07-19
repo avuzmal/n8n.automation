@@ -1,0 +1,86 @@
+{
+  "name": "039 - Low Stock Hidden Item",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "Shopify Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "Check Quantity",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "If 0",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-3",
+      "name": "Update Product Draft",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        850,
+        200
+      ]
+    }
+  ],
+  "connections": {
+    "Shopify Webhook": {
+      "main": [
+        [
+          {
+            "node": "Check Quantity",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Quantity": {
+      "main": [
+        [
+          {
+            "node": "If 0",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If 0": {
+      "main": [
+        [
+          {
+            "node": "Update Product Draft",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

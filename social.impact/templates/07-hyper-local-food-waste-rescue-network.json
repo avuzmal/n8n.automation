@@ -1,0 +1,108 @@
+{
+  "name": "07 - Hyper-Local Food Waste Rescue Network",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "Restaurant POS Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "Calculate Nutrients",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "Match Food Bank",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-3",
+      "name": "Dispatch UberDirect",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        850,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-4",
+      "name": "SMS Notifications",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        250,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "Restaurant POS Webhook": {
+      "main": [
+        [
+          {
+            "node": "Calculate Nutrients",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculate Nutrients": {
+      "main": [
+        [
+          {
+            "node": "Match Food Bank",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Match Food Bank": {
+      "main": [
+        [
+          {
+            "node": "Dispatch UberDirect",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dispatch UberDirect": {
+      "main": [
+        [
+          {
+            "node": "SMS Notifications",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

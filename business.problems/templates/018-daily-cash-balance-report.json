@@ -1,0 +1,108 @@
+{
+  "name": "018 - Daily Cash Balance Report",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "Daily Cron",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "Plaid API (Bank 1)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "Plaid API (Bank 2)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-3",
+      "name": "Aggregate Data",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        850,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-4",
+      "name": "Twilio SMS",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        250,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "Daily Cron": {
+      "main": [
+        [
+          {
+            "node": "Plaid API (Bank 1)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Plaid API (Bank 1)": {
+      "main": [
+        [
+          {
+            "node": "Plaid API (Bank 2)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Plaid API (Bank 2)": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Data": {
+      "main": [
+        [
+          {
+            "node": "Twilio SMS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

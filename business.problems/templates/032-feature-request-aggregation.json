@@ -1,0 +1,64 @@
+{
+  "name": "032 - Feature Request Aggregation",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "Multi-Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "OpenAI Extraction",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "Productboard Create",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    }
+  ],
+  "connections": {
+    "Multi-Webhook": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Extraction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Extraction": {
+      "main": [
+        [
+          {
+            "node": "Productboard Create",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

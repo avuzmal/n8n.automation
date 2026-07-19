@@ -1,0 +1,130 @@
+{
+  "name": "23 - Adaptive Technology Repair & Loaner Coordination",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "Repair Request Form",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "Check Loaner Inventory",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "Is Available?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-3",
+      "name": "Dispatch Delivery Volunteer",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        850,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-4",
+      "name": "Ping Tech Volunteer",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        250,
+        400
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-5",
+      "name": "Create Tracking Ticket",
+      "type": "n8n-nodes-base.jira",
+      "typeVersion": 1,
+      "position": [
+        450,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "Repair Request Form": {
+      "main": [
+        [
+          {
+            "node": "Check Loaner Inventory",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Loaner Inventory": {
+      "main": [
+        [
+          {
+            "node": "Is Available?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Available?": {
+      "main": [
+        [
+          {
+            "node": "Dispatch Delivery Volunteer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dispatch Delivery Volunteer": {
+      "main": [
+        [
+          {
+            "node": "Ping Tech Volunteer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ping Tech Volunteer": {
+      "main": [
+        [
+          {
+            "node": "Create Tracking Ticket",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

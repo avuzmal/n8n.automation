@@ -1,0 +1,196 @@
+{
+  "name": "06 - Elderly Fall Detection & Autonomous Wellness Check",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "IoT Motion Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "Wait (Until 10 AM)",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "Check Motion Status",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-3",
+      "name": "Twilio Voice Call",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        850,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-4",
+      "name": "Wait (Answer)",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        250,
+        400
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-5",
+      "name": "Text Neighbor",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        450,
+        400
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-6",
+      "name": "Wait (Neighbor)",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        650,
+        400
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-7",
+      "name": "Dispatch EMS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        850,
+        400
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-8",
+      "name": "Email Medical History",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        250,
+        600
+      ]
+    }
+  ],
+  "connections": {
+    "IoT Motion Webhook": {
+      "main": [
+        [
+          {
+            "node": "Wait (Until 10 AM)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait (Until 10 AM)": {
+      "main": [
+        [
+          {
+            "node": "Check Motion Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Motion Status": {
+      "main": [
+        [
+          {
+            "node": "Twilio Voice Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Twilio Voice Call": {
+      "main": [
+        [
+          {
+            "node": "Wait (Answer)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait (Answer)": {
+      "main": [
+        [
+          {
+            "node": "Text Neighbor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Neighbor": {
+      "main": [
+        [
+          {
+            "node": "Wait (Neighbor)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait (Neighbor)": {
+      "main": [
+        [
+          {
+            "node": "Dispatch EMS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dispatch EMS": {
+      "main": [
+        [
+          {
+            "node": "Email Medical History",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

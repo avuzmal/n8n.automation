@@ -1,0 +1,64 @@
+{
+  "name": "030 - New Domain DNS Setup",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "Form Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "Cloudflare API (MX)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "Cloudflare API (TXT)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    }
+  ],
+  "connections": {
+    "Form Webhook": {
+      "main": [
+        [
+          {
+            "node": "Cloudflare API (MX)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cloudflare API (MX)": {
+      "main": [
+        [
+          {
+            "node": "Cloudflare API (TXT)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

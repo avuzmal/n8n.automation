@@ -1,0 +1,64 @@
+{
+  "name": "026 - Server Outage Remediation",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "Datadog Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "AWS EC2 Reboot",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "Jira Create Incident",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    }
+  ],
+  "connections": {
+    "Datadog Webhook": {
+      "main": [
+        [
+          {
+            "node": "AWS EC2 Reboot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AWS EC2 Reboot": {
+      "main": [
+        [
+          {
+            "node": "Jira Create Incident",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

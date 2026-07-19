@@ -1,0 +1,135 @@
+{
+  "name": "24 - Human-Wildlife Conflict Early Warning System",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "GPS Collar Data Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "Check Geofence (Python)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "Approaching Village?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-3",
+      "name": "Trigger Smart Lights/IoT",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        850,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-4",
+      "name": "Get Village Leader Contact",
+      "type": "n8n-nodes-base.mysql",
+      "typeVersion": 1,
+      "position": [
+        250,
+        400
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-5",
+      "name": "Send SMS Warning",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        450,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "GPS Collar Data Webhook": {
+      "main": [
+        [
+          {
+            "node": "Check Geofence (Python)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Geofence (Python)": {
+      "main": [
+        [
+          {
+            "node": "Approaching Village?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Approaching Village?": {
+      "main": [
+        [
+          {
+            "node": "Trigger Smart Lights/IoT",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Village Leader Contact",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger Smart Lights/IoT": {
+      "main": [
+        [
+          {
+            "node": "Send SMS Warning",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Village Leader Contact": {
+      "main": [
+        [
+          {
+            "node": "Send SMS Warning",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

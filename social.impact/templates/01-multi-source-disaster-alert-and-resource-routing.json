@@ -1,0 +1,168 @@
+{
+  "name": "01 - Multi-Source Disaster Alert & Resource Routing",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "USGS Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "NOAA Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "Merge Triggers",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-3",
+      "name": "AI Severity Parser",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [
+        850,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-4",
+      "name": "Query OpenStreetMap",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        250,
+        400
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-5",
+      "name": "Route Alerts",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        450,
+        400
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-6",
+      "name": "Twilio SMS",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        650,
+        400
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-7",
+      "name": "Update Airtable",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [
+        850,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "USGS Webhook": {
+      "main": [
+        [
+          {
+            "node": "Merge Triggers",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NOAA Webhook": {
+      "main": [
+        [
+          {
+            "node": "Merge Triggers",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Triggers": {
+      "main": [
+        [
+          {
+            "node": "AI Severity Parser",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Severity Parser": {
+      "main": [
+        [
+          {
+            "node": "Query OpenStreetMap",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Query OpenStreetMap": {
+      "main": [
+        [
+          {
+            "node": "Route Alerts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route Alerts": {
+      "main": [
+        [
+          {
+            "node": "Twilio SMS",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Update Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

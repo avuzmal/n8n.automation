@@ -1,0 +1,86 @@
+{
+  "name": "036 - NDA Counter-Signature",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "DocuSign Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "Route to GC",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "Wait for GC Sign",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-3",
+      "name": "Box Upload",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        850,
+        200
+      ]
+    }
+  ],
+  "connections": {
+    "DocuSign Webhook": {
+      "main": [
+        [
+          {
+            "node": "Route to GC",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route to GC": {
+      "main": [
+        [
+          {
+            "node": "Wait for GC Sign",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait for GC Sign": {
+      "main": [
+        [
+          {
+            "node": "Box Upload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

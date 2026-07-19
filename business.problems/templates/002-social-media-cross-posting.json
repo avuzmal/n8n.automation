@@ -1,0 +1,64 @@
+{
+  "name": "002 - Social Media Cross-Posting",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "RSS Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "OpenAI Formatter",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "Buffer API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    }
+  ],
+  "connections": {
+    "RSS Trigger": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Formatter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Formatter": {
+      "main": [
+        [
+          {
+            "node": "Buffer API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

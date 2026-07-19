@@ -1,0 +1,146 @@
+{
+  "name": "13 - Legislative Bill Impact Analyzer & Civic Digest",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "Gov Legislative API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "New Bill Detected",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "LLM Impact Analysis",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-3",
+      "name": "Translation API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        850,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-4",
+      "name": "Get Citizen Subscriptions",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 1,
+      "position": [
+        250,
+        400
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-5",
+      "name": "Send Personalized Emails",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        450,
+        400
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-6",
+      "name": "Send SMS Digest",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        650,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "Gov Legislative API": {
+      "main": [
+        [
+          {
+            "node": "New Bill Detected",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "New Bill Detected": {
+      "main": [
+        [
+          {
+            "node": "LLM Impact Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM Impact Analysis": {
+      "main": [
+        [
+          {
+            "node": "Translation API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Translation API": {
+      "main": [
+        [
+          {
+            "node": "Get Citizen Subscriptions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Citizen Subscriptions": {
+      "main": [
+        [
+          {
+            "node": "Send Personalized Emails",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send SMS Digest",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

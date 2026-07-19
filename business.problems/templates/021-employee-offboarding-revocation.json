@@ -1,0 +1,86 @@
+{
+  "name": "021 - Employee Offboarding Revocation",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "Workday Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "Okta Deprovision",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "GitHub Remove",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-3",
+      "name": "Slack Remove",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        850,
+        200
+      ]
+    }
+  ],
+  "connections": {
+    "Workday Webhook": {
+      "main": [
+        [
+          {
+            "node": "Okta Deprovision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Okta Deprovision": {
+      "main": [
+        [
+          {
+            "node": "GitHub Remove",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub Remove": {
+      "main": [
+        [
+          {
+            "node": "Slack Remove",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

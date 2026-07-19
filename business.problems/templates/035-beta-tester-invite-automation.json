@@ -1,0 +1,64 @@
+{
+  "name": "035 - Beta Tester Invite Automation",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "Typeform Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "Airtable Add",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "App Store Connect API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    }
+  ],
+  "connections": {
+    "Typeform Webhook": {
+      "main": [
+        [
+          {
+            "node": "Airtable Add",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Airtable Add": {
+      "main": [
+        [
+          {
+            "node": "App Store Connect API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

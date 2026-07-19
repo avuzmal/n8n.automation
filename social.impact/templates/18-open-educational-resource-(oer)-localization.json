@@ -1,0 +1,108 @@
+{
+  "name": "18 - Open Educational Resource (OER) Localization",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "OER RSS Feed",
+      "type": "n8n-nodes-base.rssFeed",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "AI Translation & Adaptation",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "Format for SMS/Micro-lesson",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-3",
+      "name": "Get Teacher List",
+      "type": "n8n-nodes-base.mysql",
+      "typeVersion": 1,
+      "position": [
+        850,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-4",
+      "name": "Distribute via WhatsApp",
+      "type": "n8n-nodes-base.whatsapp",
+      "typeVersion": 1,
+      "position": [
+        250,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "OER RSS Feed": {
+      "main": [
+        [
+          {
+            "node": "AI Translation & Adaptation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Translation & Adaptation": {
+      "main": [
+        [
+          {
+            "node": "Format for SMS/Micro-lesson",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format for SMS/Micro-lesson": {
+      "main": [
+        [
+          {
+            "node": "Get Teacher List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Teacher List": {
+      "main": [
+        [
+          {
+            "node": "Distribute via WhatsApp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

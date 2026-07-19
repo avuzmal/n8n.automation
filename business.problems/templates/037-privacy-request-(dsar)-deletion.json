@@ -1,0 +1,108 @@
+{
+  "name": "037 - Privacy Request (DSAR) Deletion",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "Form Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "Delete CRM",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "Delete Helpdesk",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-3",
+      "name": "Delete Mailchimp",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        850,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-4",
+      "name": "Email Confirmation",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        250,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "Form Webhook": {
+      "main": [
+        [
+          {
+            "node": "Delete CRM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete CRM": {
+      "main": [
+        [
+          {
+            "node": "Delete Helpdesk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Helpdesk": {
+      "main": [
+        [
+          {
+            "node": "Delete Mailchimp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Mailchimp": {
+      "main": [
+        [
+          {
+            "node": "Email Confirmation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

@@ -1,0 +1,135 @@
+{
+  "name": "22 - Real-Time Sign Language Accessibility Event Auditor",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "Video Stream Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "AI Speech-to-Text",
+      "type": "n8n-nodes-base.awsTranscribe",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "Translate to Sign Avatar API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-3",
+      "name": "Generate Transcript PDF",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        850,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-4",
+      "name": "Get Registered Attendees",
+      "type": "n8n-nodes-base.eventbrite",
+      "typeVersion": 1,
+      "position": [
+        250,
+        400
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-5",
+      "name": "Email Accessibility Package",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        450,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "Video Stream Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Speech-to-Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Speech-to-Text": {
+      "main": [
+        [
+          {
+            "node": "Translate to Sign Avatar API",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Generate Transcript PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Translate to Sign Avatar API": {
+      "main": [
+        [
+          {
+            "node": "Get Registered Attendees",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Transcript PDF": {
+      "main": [
+        [
+          {
+            "node": "Get Registered Attendees",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Registered Attendees": {
+      "main": [
+        [
+          {
+            "node": "Email Accessibility Package",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

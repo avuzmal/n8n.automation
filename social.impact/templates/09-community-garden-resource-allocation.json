@@ -1,0 +1,146 @@
+{
+  "name": "09 - Community Garden Resource Allocation",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "Weekly Trigger",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "Get Soil Data",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "Get Weather Forecast",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-3",
+      "name": "AI Crop Recommendation",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [
+        850,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-4",
+      "name": "Check Seed Inventory",
+      "type": "n8n-nodes-base.mysql",
+      "typeVersion": 1,
+      "position": [
+        250,
+        400
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-5",
+      "name": "Order Seeds API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        400
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-6",
+      "name": "Publish Harvest Forecast",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        650,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "Weekly Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Soil Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Soil Data": {
+      "main": [
+        [
+          {
+            "node": "Get Weather Forecast",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Weather Forecast": {
+      "main": [
+        [
+          {
+            "node": "AI Crop Recommendation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Crop Recommendation": {
+      "main": [
+        [
+          {
+            "node": "Check Seed Inventory",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Seed Inventory": {
+      "main": [
+        [
+          {
+            "node": "Order Seeds API",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Publish Harvest Forecast",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

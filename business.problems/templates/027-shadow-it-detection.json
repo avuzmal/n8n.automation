@@ -1,0 +1,108 @@
+{
+  "name": "027 - Shadow IT Detection",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "GSuite Logs Cron",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "Check App Whitelist",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "If Unauthorized",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-3",
+      "name": "Revoke OAuth",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        850,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-4",
+      "name": "Email Security",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        250,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "GSuite Logs Cron": {
+      "main": [
+        [
+          {
+            "node": "Check App Whitelist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check App Whitelist": {
+      "main": [
+        [
+          {
+            "node": "If Unauthorized",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Unauthorized": {
+      "main": [
+        [
+          {
+            "node": "Revoke OAuth",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Revoke OAuth": {
+      "main": [
+        [
+          {
+            "node": "Email Security",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

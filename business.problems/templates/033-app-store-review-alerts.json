@@ -1,0 +1,86 @@
+{
+  "name": "033 - App Store Review Alerts",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-0",
+      "name": "App Store RSS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        250,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-1",
+      "name": "Filter < 3 Stars",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-2",
+      "name": "Google Translate",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "node-3",
+      "name": "Slack Post",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        850,
+        200
+      ]
+    }
+  ],
+  "connections": {
+    "App Store RSS": {
+      "main": [
+        [
+          {
+            "node": "Filter < 3 Stars",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter < 3 Stars": {
+      "main": [
+        [
+          {
+            "node": "Google Translate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Translate": {
+      "main": [
+        [
+          {
+            "node": "Slack Post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}
