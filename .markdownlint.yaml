@@ -24,3 +24,9 @@ MD032: false
 
 # Allow different heading styles (setext vs atx)
 MD003: false
+
+# Allow first line to not be a top-level heading
+MD041: false
+
+# Allow heading levels to increment by more than one (e.g., h1 to h3)
+MD001: false
